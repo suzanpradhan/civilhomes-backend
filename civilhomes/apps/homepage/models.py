@@ -8,13 +8,25 @@ class Service(models.Model):
     description = models.TextField()
     image = models.ForeignKey(imagegallery_models.Image, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.title
+    
+
+
 class VideoSection(models.Model):
     videoTitle = models.CharField(max_length=255)
-    videoLink = models.CharField(max_length=255)
+    video = models.FileField(upload_to = 'videos/', null=True, blank=True)
+    videoLink = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.videoTitle
+    
+
 
 class Companies(models.Model):
     name = models.CharField(max_length=255)
     companyLogo = models.ForeignKey(imagegallery_models.Image, on_delete=models.CASCADE)
+
 
 class ContactInfo(models.Model):
     address = models.CharField(max_length=255)
@@ -22,15 +34,15 @@ class ContactInfo(models.Model):
     phone = models.CharField(max_length=255)
     fax = models.CharField(max_length=255)
 
+
 class HomePageBasic(models.Model):
     headerTitle = models.CharField(max_length=255)
     headerDescription = models.TextField()
     services = models.ManyToManyField(Service)
     videoSection = models.ForeignKey(VideoSection, on_delete=models.CASCADE)
-    promotedProject = models.ForeignKey(project_models.Project, on_delete=models.CASCADE, related_name='promoted_projects')
+    promotedProject = models.ForeignKey(project_models.Project, on_delete=models.CASCADE,
+                                        related_name='promoted_projects')
     ongoingProjects = models.ManyToManyField(project_models.Project, related_name="ongoing_projects")
     companies = models.ManyToManyField(Companies)
     location = models.ForeignKey(project_models.Location, on_delete=models.CASCADE)
     contactInfo = models.ForeignKey(ContactInfo, on_delete=models.CASCADE)
-
-

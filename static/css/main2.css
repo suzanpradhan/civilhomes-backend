@@ -641,6 +641,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  /* height: 500px; */
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -660,6 +661,7 @@ body {
   /* border-radius: 2rem; */
   height: 32rem;
 }
+
 
 .videoSection .player button img {
   position: absolute;

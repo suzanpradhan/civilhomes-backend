@@ -4,7 +4,7 @@ from civilhomes.apps.projects import models as projects_model
 
 class Image(models.Model):
     image_name = models.CharField(max_length=200)
-    image_url = models.URLField(max_length=200)
+    image = models.ImageField(upload_to = 'services/', null=True)
     image_type = models.CharField(max_length=10)
 
     def __str__(self):
