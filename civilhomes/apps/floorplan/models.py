@@ -1,6 +1,6 @@
 from django.db import models
-from projects import models as project_models
-from imagegallery import models as imagegallery_models
+from civilhomes.apps.projects import models as project_models
+from civilhomes.apps.imagegallery import models as imagegallery_models
 
 
 class HouseType(models.Model):

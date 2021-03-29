@@ -1,5 +1,5 @@
 from django.db import models
-from projects import models as projects_model
+from civilhomes.apps.projects import models as projects_model
 
 
 class Image(models.Model):
