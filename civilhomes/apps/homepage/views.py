@@ -11,5 +11,13 @@ class HomePageView(TemplateView):
         if mainHomeData.videoSection.videoLink is not None:
             mainHomeData.videoSection.videoLink = mainHomeData.videoSection.videoLink.replace("watch?v=","embed/")
         service = Service.objects.all()
-        print(service)
-        return render(request, self.template_name, {"services": service, "mainHomeData": mainHomeData})
+        promotedProject = mainHomeData.promotedProject
+        companies = mainHomeData.companies.all()
+        testPhase = {
+            "name":"uallal",
+            "lat":85.31403,
+            "long":27.6793064
+        }
+        contactInfo = mainHomeData.contactInfo
+        return render(request, self.template_name, {"services": service, "mainHomeData": mainHomeData, "promotedProject":promotedProject, "companies": companies,
+        "testData": dumps(testPhase), "contactInfo":contactInfo})

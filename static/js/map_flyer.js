@@ -12,7 +12,7 @@ var map = new mapboxgl.Map({
 var chapters = {
   "phaseI": {
     bearing: 27,
-    center: [85.31403, 27.6793064],
+    center: [data.lat, 27.6793064],
     zoom: 15.5,
     pitch: 20,
     tabId: "phaseI_tab",

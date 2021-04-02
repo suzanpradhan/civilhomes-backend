@@ -656,19 +656,9 @@
         <div class="siteInfos">
           <div class="topInfo">
             <h1>
-              PHASE XI - Boudha
+              {{promotedProject.name}}
             </h1>
-            <p>Bringing a cosmopolitan flair amidst the jungle-
-              clad backdrop of Gokarna, Civil Homes’ Phase XI
-              in Boudda,Jorpati gives new meaning to nature
-              and nurture. Just 4.2 km away from the
-              CHUCHEPATI BUS STOP, Boudhanath Sadak, the
-              housing complex is built on soil-tested ground that
-              is surrounded by hill tops on the north. Since the
-              housing complex sits across a hilltop, it is
-              surrounded by abundance of greenery and trees
-              all around giving the residence complex a feel of
-              retreat home.</p>
+            <p>{{promotedProject.description}}</p>
               <img src="{% static 'images/CLR-1.jpg'%}" alt="">
           </div>
           <hr>
@@ -1012,6 +1002,10 @@
               </div>
             </div>
           </div>
+          <script>
+            var data = {{testData|safe}};
+            console.log(data);
+          </script>
           <script src="{% static 'js/map_flyer.js'%}"></script>
         </div>
       </div>
@@ -1033,64 +1027,24 @@
       <!-- ASSOCIATES SECTION -->
       <div class="forthSection">
         <h1>Our Associates Companies</h1>
+        
         <ul class="cS-hidden" id="companiesSlider">
+        {% for company in companies %}
           <li class="item-a">
             <div class="companiesTiles">
-              <img src="{% static 'images/companies/Civil-Apartment-Pvt-Ltd.jpg'%}" alt="" />
+              <img src="{{ company.companyLogo.image.url }}" alt="" />
             </div>
           </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{% static 'images/companies/Civil-Bank-Pvt-Ltd.jpg'%}" alt="" />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img
-                src="{% static 'images/companies/Civil-Capital-Market-Pvt-Ltd.jpg'%}"
-                alt=""
-              />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{% static 'images/companies/Civil-Estates-Pvt-Ltd.jpg'%}" alt="" />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{% static 'images/companies/Civil-Furniture.jpg'%}" alt="" />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{% static 'images/companies/civil-group.jpg'%}" alt="" />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{% static 'images/companies/civil-rmc.jpg'%}" alt="" />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img
-                src="{% static 'images/companies/Civil-Savings-and-Co-op-Logo.jpg'%}"
-                alt=""
-              />
-            </div>
-          </li>
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{% static 'images/companies/CTC-Mall.jpg'%}" alt="" />
-            </div>
-          </li>
+        {% endfor %}
         </ul>
       </div>
 
       <!-- LOCATION MAP SECTION -->
       <div class="locationSection">
-        <iframe
+      {% if mainHomeData.location.iframeSnippet != None %}
+        {{ mainHomeData.location.iframeSnippet|safe }}
+        {% endif %}
+        {% comment %} <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.526798787573!2d85.26927769854049!3d27.70742831234713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb227f3edd972b%3A0xa667e251c9b31376!2sCivil%20Homes%20Phase%20VII!5e0!3m2!1sen!2snp!4v1612910960121!5m2!1sen!2snp"
           height="320"
           frameborder="0"
@@ -1098,7 +1052,7 @@
           allowfullscreen=""
           aria-hidden="false"
           tabindex="0"
-        ></iframe>
+        ></iframe> {% endcomment %}
       </div>
 
       <!-- New Footer -->
@@ -1111,10 +1065,10 @@
           <div class="sections">
             <div class="contactSection">
               <h4 class="sectionTitle">Contact Us</h4>
-              <p>Soalteemode, Kalimati</p>
-              <p>sales@civilgroup.com.np</p>
-              <p>Phone: 977-14030726/627/628</p>
-              <p>Fax: 977-140307613</p>
+              <p>{{contactInfo.address}}</p>
+              <p>{{contactInfo.contactEmail}}</p>
+              <p>Phone: {{contactInfo.phone}}</p>
+              <p>Fax: {{contactInfo.fax}}</p>
             </div>
             <div class="ourProjects1">
               <h4 class="sectionTitle">Ongoing Projects</h4>

@@ -13,6 +13,7 @@ class Location(models.Model):
     name = models.CharField(max_length=200)
     latitude = models.CharField(max_length=10)
     longitude = models.CharField(max_length=10)
+    iframe_snippet = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
