@@ -1,0 +1,192 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="aboutHeaderImage" style="background-image: url({% static 'images/CLR-1.jpg'%})">
+      {% comment %} <img src="{% static 'images/CLR-1.jpg'%}" alt="" /> {% endcomment %}
+      {% block navbar %}
+
+        {% include 'inc/navbar.html' %}
+        
+        {% endblock navbar %}
+    </div>
+
+    {% comment %} <div class="aboutTabs">
+      <ul>
+        <li class="active"><a href="">COMPANY BACKGROUND</a></li>
+        <li><a href="">Chairman's Message</a></li>
+        <li><a href="">NewsRoom</a></li>
+      </ul>
+      <hr />
+    </div> {% endcomment %}
+
+    <div class="about-wrapper">
+      <div class="aboutIntroduction">
+        <div class="left-section">
+          <h1>Introduction</h1>
+          <p>
+            15 years into the housing business, Civil Homes has secured a place
+            for itself as a leading real estate developer in Nepal. Built on its
+            customers’ trust and support, Civil Homes strives to meet their
+            ever-growing aspirations of a better living experience by bringing
+            together the best of design, technology, and innovation in each
+            project.
+          </p>
+          <p>
+            Since its first housing project in Bhainsepati or better known as
+            Phase I, Civil Homes has already been successful in providing its
+            ever-growing clientele base with three housing projects. Complete
+            with aesthetic appeal, modern amenities, state-of- the-art
+            architecture, and desired living standards, these projects sold out
+            like hot cakes. And while the company continues the legacy with
+            other colony projects, this Nepali real estate developer is
+            spreading its wings and extending its expertise to retail malls and
+            high rises.
+          </p>
+          <p>
+            Credited with introducing and pioneering the concept of housing, a
+            concept that was once frowned upon in Nepal, Civil Homes believes in
+            continuing the raise the bar higher, challenging the old, and
+            introducing more innovative and apt living standards in the country.
+            Driven by the same spirit, the company already has ground-breaking
+            housing concepts in the pipeline – the Civil Luxury Residence in
+            Sundhara and ‘Smart City’ in Panchkhal.
+          </p>
+          <p>
+            Manoeuvred by a strong management team, backed by years of
+            experience and expertise, Civil Homes is headed towards its mission
+            to offer value to its customers, shareholders, employees, and
+            society at large. And while doing so, the company is also changing
+            the level of professionalism, ethics, customer service, and
+            contributing to Nepal’s socio-economic sphere.
+          </p>
+        </div>
+
+        <div class="right-section">
+          <img src="{% static 'images/CLR-1.jpg'%}" alt="" />
+        </div>
+      </div>
+
+      <div class="aboutMore">
+        <div class="aboutMoreSection">
+          <br />
+          <h1>Vision</h1>
+          <hr />
+          <p>
+            To be a Successful conglomerate with diverse business enterprises.
+          </p>
+        </div>
+
+        <div class="aboutMoreSection">
+          <br />
+          <h1>Mission</h1>
+          <hr />
+          <p>
+            TO offer value to our customers, shareholders, employees, and
+            society at large.
+          </p>
+        </div>
+
+        <div class="aboutMoreSection">
+          <br />
+          <h1>Values</h1>
+          <hr />
+          <p>Perseverance, integrity, commitment.</p>
+        </div>
+      </div>
+
+      <div class="aboutMessages">
+        <div class="aboutMessagefirstSection">
+        <h1>Chairmain's Message</h1>
+          <h2>Hon. Er. Ichchha Raj Tamang</h2>
+          <h5>Chairman, Civil Group</h5>
+          <p>
+            In its seventeen years as a focused real estate development company,
+            Civil homes Pvt. Ltd. has established a strong presence in the real
+            estate market. The Civil Group sees its property development
+            business as a major thrust area. The property development sector is
+            already amongst the fastest growing in Nepal and in the coming
+            decades, is likely to emerge as one of the largest in the country.
+            Civil Homes firmly believes that it is uniquely positioned to take
+            advantage of the increased need for excellence in real state.
+          </p>
+          <p>
+            I am proud of the fact that Civil Homes was the first Nepali real
+            estate development company to have obtained as ISO certification.
+            This is a manifestation of our quality process and our philosophy of
+            putting customers’ interests first. Civil Homes is led by
+            experienced and energetic professionals focused on the company’s
+            core competencies. Together with our joint venture partners and
+            associates, we have developed millions of square feet of quality
+            real estate. Our unwavering commitment to improvement and innovation
+            continues in the form of several signature projects currently
+            underway.
+          </p>
+        </div>
+        <div class="aboutMessageSecondSection">
+          <img src="{% static 'images/raj-1.jpg'%}" alt="" />
+        </div>
+      </div>
+
+      <div class="newsRoom">
+      {% comment %} <h1>News Room</h1> {% endcomment %}
+        <div class="news-card">
+          <div class="blog-image">
+            <img src="{% static 'images/CLR-1.jpg'%}" alt="" />
+          </div>
+
+          <div class="blog-content">
+            <h1>Booking open for Phase VII Sitapaila</h1>
+            <p>
+              The site for this project is located at Dandapauwa VDC, Ramkot,
+              Sitapaila, in close proximity with newly developed residential
+              neighborhood, next to the Ring road from Bafal, and hence it’s a
+              very good residential neighborhood. The housing complex comprises
+              of about 118 units, among which 92 are individual bungalows and 26
+              are row house units, with plot areas ranging from 2.5 anas to 4
+              anas. Each dwelling unit is a class apart from all possible
+              housing colonies as all requirements within a residence are
+              meticulously planned and designed. The open plan for every unit
+              promotes not just free admission of light and ventilation but also
+              a compact plan with less building square footage and a world class
+              residential ambiance.
+            </p>
+            <div class="blog-card-extras">
+              <p>Mar 27 • 7 min read • <a href="">Read more</a> </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="blog-image">
+            <img src="{% static 'images/CLR-1.jpg'%}" alt="" />
+          </div>
+
+          <div class="blog-content">
+            <h1>Booking open for Phase VII Sitapaila</h1>
+            <p>
+              The site for this project is located at Dandapauwa VDC, Ramkot,
+              Sitapaila, in close proximity with newly developed residential
+              neighborhood, next to the Ring road from Bafal, and hence it’s a
+              very good residential neighborhood. The housing complex comprises
+              of about 118 units, among which 92 are individual bungalows and 26
+              are row house units, with plot areas ranging from 2.5 anas to 4
+              anas. Each dwelling unit is a class apart from all possible
+              housing colonies as all requirements within a residence are
+              meticulously planned and designed. The open plan for every unit
+              promotes not just free admission of light and ventilation but also
+              a compact plan with less building square footage and a world class
+              residential ambiance.
+            </p>
+            <div class="blog-card-extras">
+              <p>Mar 27 • 7 min read • <a href="">Read more</a> </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+{% endblock content %}

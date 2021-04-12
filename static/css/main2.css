@@ -51,6 +51,13 @@
   box-sizing: border-box;
 }
 
+button{
+  outline: none;
+}
+
+input{
+  outline: none;
+}
 /* CUSTOM ATTRIBUTES  */
 
 svg {
@@ -60,6 +67,12 @@ svg {
 
 body {
   background-color: var(--backgroundColor);
+}
+
+.sticky{
+  position: sticky;
+  top: 0;
+  /* align-self: flex-start; */
 }
 
 /* .theme-changer{
@@ -128,6 +141,8 @@ body {
 /* HEADER NAV BAR */
 
 .headerNavBar {
+  position: absolute;
+  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -141,7 +156,10 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 10px 0px;
+  padding: 10px 42px;
+  background-color: transparent;
+  z-index: 999;
+  width: 100%;
 }
 
 .headerNavBar .centerHeaderContent ul li {

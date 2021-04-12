@@ -2,11 +2,20 @@
     background-color: var(--backgroundColor);
 } */
 
-.project-gallery-slider > img{
+.project-gallery-slider img{
     width: 100%;
-    height: 80vh;
+    height: 500px;
+    position: relative;
     object-fit: cover;
     object-position: center;
+}
+#project-gallery-slider::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(var(--fadeHeader), var(--fadeHeader));
 }
 
 .project-infos-wrapper{
@@ -22,7 +31,7 @@
 }
 
 .project-infos-right{
-    background-color: blueviolet;
+    background-color: transparent;
     flex: 0.35;
 }
 
@@ -72,6 +81,7 @@
 .project-allinfos-section{
     background-color: var(--primaryCardColor);
     padding: 20px;
+    margin: 20px 0px;
 }
 
 .project-allinfos-section > h1{

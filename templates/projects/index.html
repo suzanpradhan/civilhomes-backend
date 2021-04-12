@@ -1,0 +1,55 @@
+{% extends 'homepage.html' %}
+
+{% load static %}
+
+{% block content %}
+        <div class="propertyHeaderImage" style="background-image: url({% static 'images/CLR-1.jpg'%})">
+         {% block navbar %}
+
+        {% include 'inc/navbar.html' %}
+        
+        {% endblock navbar %}
+            {% comment %} <img src="{% static 'images/CLR-1.jpg'%}" alt="" /> {% endcomment %}
+        </div>
+        
+
+        <div class="property_search_card_wrapper sticky">
+            <div class="property_search_card">
+                <form action="/projects/search" method="POST">
+                    {% csrf_token %}
+                <div class="property_search">
+                    <input type="text" name="search_value" value="{% if title %}{{title}}{% else %}{% endif %}" placeholder="Search for project...">
+                    <button type="submit">Search</button>
+                </div>
+    
+                <div class="filter-options">
+                    <input type="text" name="property_type"  value="test1" style="display: none;">
+                    <button><span>Property Type</span><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                    <input type="text" name="location" value="test2" style="display: none;">
+                    <button>Location<i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                    <input type="text" name="area" value="test3" style="display: none;">
+                    <button>Area<i class="fa fa-caret-down" aria-hidden="true"></i></button>                    
+                </div>
+                </form>
+            </div>
+    
+        </div>
+
+        <div class="property_result_wrapper">
+        
+            <div class="property_result_cards">
+
+            {% for project in projects %}
+                <div class="property_card">
+                    <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                    <div class="card-content">
+                        <h1>{{ project.name }}</h1>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{ project.address }}</p>
+                        <button><a href="{% url 'project_detail' id=project.id %}">View Detail</a></button>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>                
+        </div>
+
+{% endblock content %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivilHomes:BETA</title>
+    {% load static %}
+
+
+    <!-- CSS STYLESHEETS -->
+    <link rel="stylesheet" href="{% static 'css/main2.css' %}" />
+    <link rel="stylesheet" href="{%static 'css/swiper.css'%}" />
+    <link rel="stylesheet" href="{%static 'css/footer.css'%}" />
+    <!-- <link rel="stylesheet" href="css/navbar.css" /> -->
+    <script src="{% static 'js/swiper.min.js'%}"></script>
+
+    <link href="{% static 'css/main.css'%}" rel="stylesheet" />
+    <link href="{% static 'css/lightslider.css'%}" rel="stylesheet" />
+    <!-- <link href="./custom.css" rel="stylesheet" /> -->
+    <script src="{% static 'js/JQuery3.3.1.js' %}"></script>
+    <script src="{% static 'js/lightslider.js' %}"></script>
+    <script src="{% static 'js/lightSlider_script.js'%}"></script>
+    <script src="{% static 'js/tilt.jquery.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/map_flyer.css'%}" />
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <script src="{% static 'js/scrollcontroller.js'%}"></script>
+    <script src="{% static 'js/theme_changer.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/themes.css' %}">
+
+    <script src="{% static 'js/theme_switcher.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/featured.css' %}">
+    <link rel="stylesheet" href="{% static 'css/property_search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/projects.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+      .swiper-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        -webkit-mask-image: -webkit-linear-gradient(
+          left,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 1),
+          rgba(0, 0, 0, 1),
+          rgba(0, 0, 0, 1),
+          rgba(0, 0, 0, 1),
+          rgba(0, 0, 0, 0)
+        );
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 60%;
+        height: 59vh;
+        border-radius: 20px;
+      }
+
+      @media only screen and (max-width: 780px) {
+        .swiper-slide {
+          height: 50vh;
+        }
+      }
+    </style>
+</head>
+<body>
+    <main>
+
+    
+    
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %}
+      
+      {% include "inc/footer.html" %}
+
+    {% endblock %}
+    
+    </main>
+
+    <script>
+      $(document).ready(function () {
+        $(".tilt").tilt({
+          maxTilt: 3,
+          glare: true,
+          maxGlare: 0.4,
+        });
+
+        $(".nav-toggler").each(function (_, navToggler) {
+          var target = $(navToggler).data("target");
+          $(navToggler).on("click", function () {
+            $(target).animate({
+              height: "toggle",
+            });
+          });
+        });
+      });
+    </script>
+
+    <script src="{% static 'js/main.js'%}"></script>
+    
+</body>
+</html>

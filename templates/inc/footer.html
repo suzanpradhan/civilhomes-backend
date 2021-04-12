@@ -1,0 +1,67 @@
+{% comment %} {% extends 'homepage.html' %} {% endcomment %}
+
+{% load static %}
+
+{% block footer %}
+
+<div class="footer">
+        <div class="footerContent">
+          <div class="footerLogo">
+            <img src="{% static 'images/logo.png' %}" alt="" />
+            <!-- <h2>Civil Homes</h2> -->
+          </div>
+          <div class="sections">
+            <div class="contactSection">
+              <h4 class="sectionTitle">Contact Us</h4>
+              <p>{{contactInfo.address}}</p>
+              <p>{{contactInfo.contactEmail}}</p>
+              <p>Phone: {{contactInfo.phone}}</p>
+              <p>Fax: {{contactInfo.fax}}</p>
+            </div>
+            <div class="ourProjects1">
+              <h4 class="sectionTitle">Ongoing Projects</h4>
+              <p>Phase IV Dhapakhel</p>
+              <p>Phase IV Dhapakhel Apartment</p>
+              <p>Phase VII Sitapaila</p>
+              <p>Phase IX - Godawari</p>
+            </div>
+            <div class="ourProjects2">
+              <h4 class="sectionTitle"></h4>
+              <p>Civil Residence</p>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+            <div class="subscribe">
+              <h4 class="sectionTitle">SUBSCRIBE</h4>
+              <div class="description">
+                Subscribe us to get latest news, offers and notices about Civil
+                Homes.
+              </div>
+              <div class="subscribeForm">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  style="box-shadow: 0 0 2px #333333"
+                />
+                <button>Subscribe</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footerFrame">
+          <div class="cityBackground">
+            <img src="{% static 'images/city_background_pleasant.png'%}" alt="" />
+          </div>
+          <div class="copyrightContainer">
+            <p>© Civil Homes Pvt. Ltd. All Rights Reserved. 2012-2021</p>
+            <div class="socialMedia" style="display: flex">
+              <img src="{% static 'images/facebook.svg'%}" id="facebook" alt="" />
+              <img src="{% static 'images/twitter.svg'%}" id="twitter" alt="" />
+              <img src="{% static 'images/youtube.svg'%}" id="youtube" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+        {% block navbar %}
+
+        {% include 'inc/navbar.html' %}
+        
+        {% endblock navbar %}
+
+        <div class="project-gallery-slider">
+        
+            <ul id="project-gallery-slider">
+                {% for image in projectGallery %}
+                <li data-thumb="{{ image.image.image.url }}"><img src="{{ image.image.image.url }}" alt=""></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        
+
+        <div class="project-infos-wrapper">
+            <div class="project-infos-left">
+                <div class="project-basic-detail">
+                    <h1>{{ project.name }}</h1>
+                    <p>{{ project.location.name }}</h5>
+
+                    <div class="status">
+                        <h5>Status</h5>
+                        <p>{{ project.status }}</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="description">
+                        <h2>DESCRIPTION</h2>
+                        <p> {{ project.description }} </p>
+                    </div> 
+                </div>
+                <br>
+
+                <div class="project-allinfos-section">
+                    <h1>INFOS</h1>
+                    <div class="infos-section">
+                        {% for projectProjectInfo in projectProjectInfos %}
+                            <div class="info-card">
+                            <img src="./images/facebook.svg" alt="">
+                            <div class="info-detail">
+                                <p>{{ projectProjectInfo.info.name }}</p>
+                                <h5>{{ projectProjectInfo.value }}</h5>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+
+                <div class="project-allinfos-section">
+                    <h1>Amenities</h1>
+                    <div class="infos-section">
+
+                        {% for projectAmenitie in projectAmenities %}
+                            <div class="info-card">
+                            <img src="./images/facebook.svg" alt="">
+                            <div class="info-detail">
+                                <p>{{ projectAmenitie.name }}</p>
+                                <h5>{{ projectAmenitie.description }}}</h5>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+
+                <div class="sitePlan">
+                    <div class="siteView">
+                      <div class="siteTypes">
+                        <button onclick="floorScrollController(A_G)" class="active">Type A</button>
+                        <button onclick="floorScrollController(S_G)">Type S</button>
+                        <button onclick="floorScrollController(SD_G)">Type S-dash</button>
+                      </div>
+                      <div id="siteViewPicture" class="siteViewPicture">
+                        <div class="type">
+                          <div id="A_G" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                          <div id="A_F" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                          <div id="A_S" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                        <!-- </div>
+                        <div class="type"> -->
+                          <div id="S_G" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                          <div id="S_F" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                          <div id="S_S" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                        <!-- </div>
+                        <div class="type"> -->
+                          <div id="SD_G" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                          <div id="SD_F" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                          <div id="SD_S" class="floor">
+                            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+                          </div>
+                        </div>
+          
+                      </div>
+                      <div class="floors">
+                        <button onclick="floorScrollController(S_G)" class="active">Ground Floor</button>
+                        <button onclick="floorScrollController(S_F)">First Floor</button>
+                        <button onclick="floorScrollController(S_S)">Second Floor</button>
+                      
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="project-infos-right">
+
+            </div>
+        </div>
+        <script>
+        
+          $(document).ready(function() {
+                $('#project-gallery-slider').lightSlider({
+                    item:1,
+                    slideMargin:0,
+                    loop:true,
+                    controls: true,
+                });
+            });
+        
+        </script>
+
+{% endblock content %}
