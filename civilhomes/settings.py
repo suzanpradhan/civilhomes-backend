@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '9f6kg38mcwel7z!sr^h*m-9d1nxe+g41#wnu#%ogkpqhv6&z%k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'civilhomes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'NAME': 'getsmart_testdb',
-        # 'USER': 'getsmart_suzan',
-        # 'PASSWORD': 'Sujan12345@',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'getsmart_testdb',
+        'USER': 'getsmart_suzan',
+        'PASSWORD': 'Sujan12345@',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
