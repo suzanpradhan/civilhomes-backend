@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% block navbar %}
+
+        {% include 'inc/navbar.html' %}
+        
+    {% endblock navbar %}
+    <div class="blog-header-image">
+        <img src="{{ blog.cover_images.image.url }}" alt="">
+    </div>
+    <div class="blog-wrapper">
+        <div class="blog-header">
+            <h1>{{ blog.title }}</h1>
+            <p>{{ blog.date }} • 8 min read</p>
+            <img src="{{ blog.cover_images.image.url }}" alt="">
+        </div>
+        <div class="blog-content">
+            {{ blog.content | safe }}
+        </div>
+    </div>
+
+
+
+{% endblock content %}

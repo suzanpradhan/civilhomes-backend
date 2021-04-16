@@ -5,6 +5,7 @@ from civilhomes.apps.imagegallery import models as imagegallery_models
 from .models import Service, HomePageBasic
 from civilhomes.apps.projects import models as projects_models
 from civilhomes.apps.floorplan import models as floorplan_models
+from django.core.serializers import json
 from json import dumps
 
 class HomePageView(TemplateView):
@@ -22,7 +23,9 @@ class HomePageView(TemplateView):
         projects_floorplans = {}
         for promotedProjectHouseType  in promotedProjectHouseTypes:
             projects_floorplans[promotedProjectHouseType] = floorplan_models.FloorPlan.objects.filter(project=promotedProject, house_type=promotedProjectHouseType)
-
+        ongoingProjects = mainHomeData.ongoingProjects.all()
+        ongoingProjectsLocation = json.Serializer().serialize([(projects_models.Location.objects.get(id=ongoingProject.location.id)) for ongoingProject in ongoingProjects])
+        print(ongoingProjectsLocation)
         companies = mainHomeData.companies.all()
         testPhase = {
             "name":"uallal",
@@ -33,13 +36,15 @@ class HomePageView(TemplateView):
 
         context = {"services": service, 
                     "mainHomeData": mainHomeData, 
-                    "promotedProject":promotedProject, 
+                    "promotedProject":promotedProject,
                     "companies": companies,
                     "testData": dumps(testPhase), 
-                    "contactInfo":contactInfo, 
+                    "contactInfo":contactInfo,
                     "promotedProjectInfos":promotedProjectInfos, 
                     "projects_floorplans":projects_floorplans, 
                     "promotedProjectHouseTypes":promotedProjectHouseTypes,
+                    "ongoingProjectsJson": json.Serializer().serialize(ongoingProjects),
+                    "ongoingProjectsLocation": ongoingProjectsLocation,
                     "promotedProjectImages":promotedProjectImages}
         return render(request, self.template_name, context)
 

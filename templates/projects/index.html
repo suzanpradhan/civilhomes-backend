@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block content %}
-        <div class="propertyHeaderImage" style="background-image: url({% static 'images/CLR-1.jpg'%})">
+        <div class="property-header-image">
+            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
+        </div>
          {% block navbar %}
 
         {% include 'inc/navbar.html' %}

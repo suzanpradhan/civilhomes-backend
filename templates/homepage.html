@@ -19,7 +19,7 @@
         </div>
       </div> -->
 
-       {% block navbar %}
+        {% block navbar %}
 
         {% include 'inc/navbar.html' %}
         
@@ -129,6 +129,14 @@
             });
           </script>
         </div>
+
+        <script>
+        
+          var ongoingProjectsLocation = {{ ongoingProjectsLocation | safe }};
+          console.log(ongoingProjectsLocation);
+          var ongoingProjectsJson = {{ ongoingProjectsJson | safe }};
+          console.log(ongoingProjectsJson);
+        </script>
 
         <div class="scrollDownIndicator">
           <img src="{% static 'images/icons/arrow-ios-downward-outline.svg'%}" alt="" />
@@ -680,218 +688,38 @@
           <div class="mapInfo">
             <div class="tabs">
               <ul>
-                <li>
+                {% for ongoingProject in mainHomeData.ongoingProjects.all %}
+                  <li>
                   <a
                     class="active"
-                    id="phaseI_tab"
-                    onclick="scrollController(phaseI)"
-                    >Phase I</a
+                    id="phase{{ongoingProject.id}}_tab"
+                    onclick="scrollController(phase{{ongoingProject.id}})"
+                    >{{ongoingProject.name}}</a
                   >
                 </li>
-                <li>
-                  <a id="phaseII_tab" onclick="scrollController(phaseII)"
-                    >Phase II</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseIII_tab" onclick="scrollController(phaseIII)"
-                    >Phase III</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseIV_tab" onclick="scrollController(phaseIV)"
-                    >Phase IV</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseV_tab" onclick="scrollController(phaseV)"
-                    >Phase V</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseVI_tab" onclick="scrollController(phaseVI)"
-                    >Phase VI</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseVII_tab" onclick="scrollController(phaseVII)"
-                    >Phase VII</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseVIII_tab" onclick="scrollController(phaseVIII)"
-                    >Phase VIII</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseIX_tab" onclick="scrollController(phaseIX)"
-                    >Phase IX</a
-                  >
-                </li>
-                <li>
-                  <a id="phaseX_tab" onclick="scrollController(phaseX)"
-                    >Phase X</a
-                  >
-                </li>
+                {% endfor %}
               </ul>
             </div>
+            
             <div class="mapCards" id="mapCards">
-              <div class="mapCard active" id="phaseI">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/dhapakhel-4-filter-1024x678.jpg'%}" />
+              {% for ongoingProjectDetail in mainHomeData.ongoingProjects.all %}
+
+                <div class="mapCard active" id="phase{{ ongoingProjectDetail.id }}">
+                  <div class="headerImage">
+                    <img src="{% static 'images/services/dhapakhel-4-filter-1024x678.jpg'%}" />
+                  </div>
+                  <h3>{{ ongoingProjectDetail.name }}</h3>
+                  <p>
+                    {{ ongoingProjectDetail.description }}
+                  </p>
+                  <div class="mapViewDetail">
+                    <button> <a href="{% url 'project_detail' id=ongoingProjectDetail.id %}">View Detail</a></button>
+                  </div>
                 </div>
-                <h3>Phase I</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseII">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase II</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseIII">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/dhapakhel-2-filter-1024x531.jpg'%}" />
-                </div>
-                <h3>Phase III</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseIV">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase IV</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseV">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase V</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseVI">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase VI</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseVII">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase VII</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseVIII">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase VIII</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseIX">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase IX</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
-              <div class="mapCard" id="phaseX">
-                <div class="headerImage">
-                  <img src="{% static 'images/services/divash-edit-1-of-1-678x1024.jpg'%}" />
-                </div>
-                <h3>Phase X</h3>
-                <p>
-                  Walter writes to Oberstein and convinces him to meet in the
-                  smoking room of the Charing Cross Hotel where he promises
-                  additional plans for the submarine in exchange for money. The
-                  plan works and Holmes and Watson catch both criminals.
-                </p>
-                <div class="mapViewDetail">
-                  <button>View Detail</button>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </div>
-          <script>
-            var data = {{testData|safe}};
-            console.log(data);
-          </script>
+          
           <script src="{% static 'js/map_flyer.js'%}"></script>
         </div>
       </div>
