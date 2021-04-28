@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '9f6kg38mcwel7z!sr^h*m-9d1nxe+g41#wnu#%ogkpqhv6&z%k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
+    'civilhomes.apps.adminpanel',
     'civilhomes.apps.user',
     'civilhomes.apps.homepage',
     'civilhomes.apps.imagegallery',
@@ -85,17 +86,17 @@ WSGI_APPLICATION = 'civilhomes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': 'getsmart_testdb',
-        'USER': 'getsmart_suzan',
-        'PASSWORD': 'Sujan12345@',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': 'getsmart_testdb',
+        # 'USER': 'getsmart_suzan',
+        # 'PASSWORD': 'Sujan12345@',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation

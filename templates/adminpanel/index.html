@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+    {% block header-css %}
+    
+        {% include 'adminpanel/inc/header-css.html' %}
+    
+    {% endblock header-css %}
+    
+
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+    {% block main-navbar %}
+    
+        {% include 'adminpanel/inc/main_navbar.html' %}
+    
+    {% endblock main-navbar %}
+
+    {% block side-navbar %}
+    
+        {% include 'adminpanel/inc/side_navbar.html' %}
+
+    {% endblock side-navbar %}
+    {% block content %}
+    
+    {% endblock content %}
+        <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        {% comment %}
+        <div class="float-right d-none d-sm-inline">
+            Anything you want
+        </div> {% endcomment %}
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2021 <a href="https://civilhomes.com.np">CivilHomes</a>.</strong> All rights reserved.
+    </footer>
+    <!-- ./wrapper -->
+    </div>
+
+    {% block main-scripts %}
+      {% include 'adminpanel/inc/scripts.html' %}
+    {% endblock main-scripts %}
+    
+
+{% block scripts %}
+
+{% endblock scripts %}
+
+  <script>
+      $(function() {
+          console.log(location.pathname.split('/')[1]);
+        $('nav a').removeClass('active');
+        $('nav a[href^="/' adminpanel+location.pathname.split('/')[1] + '"]').addClass('active');
+      });
+  </script>
+</body>
+</html>

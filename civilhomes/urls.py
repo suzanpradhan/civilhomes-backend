@@ -22,4 +22,6 @@ urlpatterns = [
     path('',include("civilhomes.apps.homepage.urls")),
     path('projects/', include("civilhomes.apps.projects.urls")),
     path('newsroom/', include("civilhomes.apps.blogapp.urls")),
+    path('myadmin/', include("civilhomes.apps.adminpanel.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
