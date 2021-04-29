@@ -257,27 +257,27 @@ class HomepageEdit(TemplateView):
         
         location = request.POST.get('location')
         contactInfo = request.POST.get('contact')
-        try :
-            homepage = HomePageBasic.objects.get(id=id)
-            services = homepage.services.all()
-            ongoingProject = homepage.ongoingProject.all()
-            companies = homepage.companies.all()
-            if headerTitle:
-                homepage.headerTitle=headerTitle
-            if headerDescription:
-                homepage.headerDescription=headerDescription
-            if videoSection:
-                vid = VideoSection(videoTitle=request.POST.get('videoTitle'),video=request.FILES('video'),videoLink=request.POST.get('videoURL'))
-                vid.save()
-                homepage.videoSection = vid
-            if promotedProject:
-                homepage.promotedProject= Project.objects.get(id=promotedProject)
-            if location:
-                homepage.location = Location.objects.get(id=location)
-            if contactInfo:
-                homepage.contactInfo = ContactInfo.objects.get(id=contactInfo)
+        
+        homepage = HomePageBasic.objects.get(id=id)
+        services = homepage.services.all()
+        ongoingProject = homepage.ongoingProject.all()
+        companies = homepage.companies.all()
+        if headerTitle:
+            homepage.headerTitle=headerTitle
+        if headerDescription:
+            homepage.headerDescription=headerDescription
+        if videoSection:
+            vid = VideoSection(videoTitle=request.POST.get('videoTitle'),video=request.FILES('video'),videoLink=request.POST.get('videoURL'))
+            vid.save()
+            homepage.videoSection = vid
+        if promotedProject:
+            homepage.promotedProject= Project.objects.get(id=promotedProject)
+        if location:
+            homepage.location = Location.objects.get(id=location)
+        if contactInfo:
+            homepage.contactInfo = ContactInfo.objects.get(id=contactInfo)
 
-            homepage.services = services
-            homepage.ongoingProject = ongoingProject
-            homepage.companies = companies
-            homepage.save()
+        homepage.services = services
+        homepage.ongoingProject = ongoingProject
+        homepage.companies = companies
+        homepage.save()
