@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from civilhomes.apps.homepage.models import Companies, HomePageBasic, Service, VideoSection
+from civilhomes.apps.homepage.models import Companies, ContactInfo, HomePageBasic, Service, VideoSection
 from civilhomes.apps.imagegallery.models import Image
 from civilhomes.apps.blogapp.models import Blog
 from civilhomes.apps.projects.models import *
+from django.http import request
 
 
 class Dashboard(TemplateView):
@@ -67,6 +68,14 @@ class AddUpdateVideo(TemplateView):
             vid = VideoSection(videoTitle=videoTitle,video=video,videoLink=videoURL)
             vid.save()
 
+class ListDeleteVideo(TemplateView):
+    
+    def post(self, request,id,*args,**kwargs):
+        VideoSection.objects.filter(id=id).delete()
+
+    def get(self, request, *args, **kwargs):
+        VideosAll = VideoSection.objects.all()
+
 class AddUpdateImages(TemplateView):
 
     def post(self, request,id,*args,**kwargs):
@@ -86,6 +95,15 @@ class AddUpdateImages(TemplateView):
         except :
             imageObj=Image(image_name=request.POST.get('imageName'),image=request.FILES('image'),image_type=request.POST.get('type'))
             imageObj.save()
+
+
+class ListDeleteImage(TemplateView):
+    
+    def post(self, request,id,*args,**kwargs):
+        Image.objects.filter(id=id).delete()
+
+    def get(self, request, *args, **kwargs):
+        ImagesAll = Image.objects.all()
 
 class ListDeleteBlog(TemplateView):
 
@@ -153,6 +171,13 @@ class AddUpdateProject(TemplateView):
                             location = Location.objects.get(id=location))
         project.save()
 
+class ListDeleteProject(TemplateView):
+    
+    def post(self, request,id,*args,**kwargs):
+        Project.objects.filter(id=id).delete()
+
+    def get(self, request, *args, **kwargs):
+        ProjectAll = Project.objects.all()
 
 class ProjectInfo(TemplateView):
 
@@ -182,6 +207,14 @@ class ProjectInfo(TemplateView):
                                         value=request.POST.get('value'))
             projectInfo.save()
 
+class ListDeleteProjectInfo(TemplateView):
+    
+    def post(self, request,id,*args,**kwargs):
+        ProjectInfo.objects.filter(id=id).delete()
+
+    def get(self, request, *args, **kwargs):
+        ProjectInfoAll = ProjectInfo.objects.all()
+
 class AddUpdateAmenities(TemplateView):
 
     def post(self, request, id,*args,**kwargs):
@@ -204,20 +237,31 @@ class AddUpdateAmenities(TemplateView):
                                 description = request.POST.get('description'),
                                 project= Project.objects.get(project))
 
+class ListDeleteAmenities(TemplateView):
+    
+    def post(self, request,id,*args,**kwargs):
+        Amenitie.objects.filter(id=id).delete()
+
+    def get(self, request, *args, **kwargs):
+        AmenitiesAll = Amenitie.objects.all()
+
+
 class HomepageEdit(TemplateView):
 
     def post(self, request, id,*args,**kwargs):
         headerTitle= request.POST.get('headerTitle')
         headerDescription = request.POST.get('headerDescription')
-        services = Service.objects.get.all()
+        
         videoSection = request.POST.get('video')
         promotedProject = request.POST.get('project')
-        ongoingProject = Project.objects.get.all()
-        companies = Companies.objects.get.all()
+        
         location = request.POST.get('location')
         contactInfo = request.POST.get('contact')
         try :
             homepage = HomePageBasic.objects.get(id=id)
+            services = homepage.services.all()
+            ongoingProject = homepage.ongoingProject.all()
+            companies = homepage.companies.all()
             if headerTitle:
                 homepage.headerTitle=headerTitle
             if headerDescription:
@@ -231,20 +275,9 @@ class HomepageEdit(TemplateView):
             if location:
                 homepage.location = Location.objects.get(id=location)
             if contactInfo:
-                homepage.contactInfo = contactInfo.objects.get(id=contactInfo)
+                homepage.contactInfo = ContactInfo.objects.get(id=contactInfo)
 
             homepage.services = services
             homepage.ongoingProject = ongoingProject
             homepage.companies = companies
             homepage.save()
-        except:
-            homepage= HomePageBasic(headerTitle= request.POST.get('headerTitle'),
-        headerDescription = request.POST.get('headerDescription'),
-        services = Service.objects.get.all(),
-        videoSection = request.POST.get('video'),
-        promotedProject = request.POST.get('project'),
-        ongoingProject = Project.objects.get.all(),
-        companies = Companies.objects.get.all(),
-        location = request.POST.get('location'),
-        contactInfo = request.POST.get('contact'))
-        homepage.save()
