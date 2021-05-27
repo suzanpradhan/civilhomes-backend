@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Image
-from .models import ImageGallery
+# from .models import ImageGallery
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -13,4 +13,4 @@ class ImageGalleryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Image, ImageAdmin)
-admin.site.register(ImageGallery, ImageGalleryAdmin)
+# admin.site.register(ImageGallery, ImageGalleryAdmin)

@@ -1,13 +1,6 @@
 {% extends 'index.html' %}
-
-
 {% load static %}
-
-
 {% block content %}
-
-
-
       <!-- <div class="theme-switcher">
         <div class="theme-changer">
           <p>Night</p>
@@ -18,130 +11,59 @@
 
         </div>
       </div> -->
-
-        {% block navbar %}
-
-        {% include 'inc/navbar.html' %}
-        
-        {% endblock navbar %}
+{% block navbar %}
+{% include 'inc/navbar.html' %}
+{% endblock navbar %}
 
 
-      <!-- FIRST SECTION -->
-      <div class="firstSection">
-       
-
-        <div class="detail-box">
-          <div class="details-col header-textarea">
-            <div class="detail-text">
-              <h1>{{mainHomeData.headerTitle}}</h1>
-              <p>
-                {{mainHomeData.headerDescription}}
-              </p>
-            </div>
-
-            <button class="explore-btn">Explore</button>
-          </div>
-          {% comment %} <div class="details-col header-slider-box">
-            <!-- Swiper -->
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div
-                  class="swiper-slide"
-                  data-swiper-autoplay="2000"
-                  style="background-image: url({% static 'images/CLR-1.jpg'%})"
-                >
-                  <!-- cards -->
-                  <div class="header-card">
-                    <div class="header-card-details">
-                      <h3>Civil Luxury Residence</h3>
-                      <p>
-                        Located in the heart of the city, Civil Luxury Hometel
-                        will be the first luxury apartment Hotel in Nepal with a
-                        total of 265 rooms including 24 apartments.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div
-                  class="swiper-slide"
-                  data-swiper-autoplay="2000"
-                  style="background-image: url({% static 'images/dhapakhel-1-filter.jpg'%})"
-                >
-                  <!-- cards -->
-                  <div class="header-card">
-                    <div class="header-card-details">
-                      <h3>Phase IV Dhapakhel</h3>
-                      <p>
-                        Amid the charm of Dhapakhel’s lush surrounding, away
-                        from the city’s pollution and crowd but close enough to
-                        reach the city centre in a few minutes’ drive, Civil
-                        Homes’ Phase IV is a new city within the city! The
-                        individual house structures are inspired from
-                        traditional Nepali style, but at the core are defined by
-                        modern engineering.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="swiper-slide"
-                  data-swiper-autoplay="2000"
-                  style="background-image: url({% static 'images/dhapakhel-1-filter.jpg'%})"
-                >
-                  <!-- cards -->
-                  <div class="header-card">
-                    <div class="header-card-details">
-                      <h3>Western Homes</h3>
-                      <p>
-                        Lorem, ipsum dolor, sit amet consectetur adipisicing
-                        elit. Labore, dolorem aperiam optio!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Add Pagination -->
-              <div class="swiper-pagination"></div>
-            </div>
-          </div> {% endcomment %}
-
-          <script>
-            var swiper = new Swiper(".swiper-container", {
-              effect: "coverflow",
-              grabCursor: true,
-              centeredSlides: true,
-              slidesPerView: "auto",
-              autoplay: {
-                delay: 50000,
-              },
-              coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-              },
-              pagination: {
-                el: ".swiper-pagination",
-              },
-            });
-          </script>
-        </div>
-
-        <script>
-        
-          var ongoingProjectsLocation = {{ ongoingProjectsLocation | safe }};
-          console.log(ongoingProjectsLocation);
-          var ongoingProjectsJson = {{ ongoingProjectsJson | safe }};
-          console.log(ongoingProjectsJson);
-        </script>
-
-        <div class="scrollDownIndicator">
-          <img src="{% static 'images/icons/arrow-ios-downward-outline.svg'%}" alt="" />
-        </div>
+<!-- FIRST SECTION -->
+<div class="firstSection">
+  <div class="detail-box">
+    <div class="details-col header-textarea">
+      <div class="detail-text">
+        <h1>{{mainHomeData.headerTitle}}</h1>
+        <p>
+          {{mainHomeData.headerDescription}}
+        </p>
       </div>
+      <button class="explore-btn">Explore</button>
+    </div>
+    <script>
+    
+      var swiper = new Swiper(".swiper-container", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        autoplay: {
+          delay: 50000,
+        },
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+      
+    </script>
+  </div>
+
+  <script>
+    var ongoingProjectsLocation = {{ ongoingProjectsLocation | safe }};
+    console.log(ongoingProjectsLocation);
+    var ongoingProjectsJson = {{ ongoingProjectsJson | safe }};
+    console.log(ongoingProjectsJson);
+  </script>
+
+  <div class="scrollDownIndicator">
+    <img src="{% static 'images/icons/arrow-ios-downward-outline.svg'%}" alt="" />
+  </div>
+</div>
 
 
       <!-- SERVICE SECTION -->
@@ -150,10 +72,8 @@
           <h4>Our Services</h4>
           <p>Discover a place you'll love to live.</p>
         </div>
-
         <div class="serviceCards">
-
-        {% for service in services %}
+        {% for service in mainHomeData.services.all %}
           <div class="serviceCard">
             <div class="coverImage">
               <img
@@ -171,6 +91,8 @@
         {% endfor %}
         </div>
       </div>
+
+
 
       <!-- VIDEO SECTION -->
       <div class="videoSection">
@@ -197,389 +119,53 @@
         </div>
       </div>
 
-      <!-- SECOND SECTION -->
-      <!-- <div class="secondSection">
-        <section class="services">
-          <div class="sectionHeader">
-            <h4>Ongoing Projects</h4>
-            <div class="headline-description mb-10">
-              <div class="separator">
-                <div class="line line-left"></div>
-
-                <div class="asterisk">*</div>
-
-                <div class="line line-right"></div>
-              </div>
-            </div>
-          </div>
-
-          <ul class="cS-hidden" id="autoWidth">
-            <li class="item-a">
-              <div class="card-slider">
-                <div class="img-box">
-                  <img
-                    alt="background-1"
-                    src="./images/services/dhapakhel-2-filter-1024x531.jpg"
-                  />
-                </div>
-
-                <div class="card-content">
-                  <h2>Individual Homes</h2>
-
-                  <p>
-                    Step into the privacy of a house, confirm security for your
-                    family, and turn it into your home. Civil Homes’ Individual
-                    Homes are designed to fit your needs, with ample green space
-                    where you can rejuvenate, re-connect, and rediscover the art
-                    of living.
-                  </p>
-                  <a class="btn text-green-600 font-bold" href="#!"
-                    >Read More
-                    <svg
-                      class="w-3 inline-block"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
-                <span
-                  class="hover-cat opacity-0 rounded-2xl bg-red-500 text-white-100 uppercase absolute top-2 right-2 py-1 px-3 text-sm"
-                  >Housing</span
-                >
-              </div>
-            </li>
-            <li class="item-a">
-              <div class="card-slider">
-                <div class="img-box">
-                  <img
-                    alt="background-1"
-                    src="./images/services/divash-edit-1-of-1-678x1024.jpg"
-                  />
-                </div>
-
-                <div class="card-content">
-                  <h2>Housing Hub</h2>
-                  <span>Kathmandu, Nepal</span>
-
-                  <p>
-                    A modern twist to communal living, the High Rise Towers of
-                    Civil Homes reflects and retains the comfort and facilities
-                    suitable for a nuclear family. Spacious despite the compact
-                    design, these apartments need very little maintenance, are
-                    budget friendly.
-                  </p>
-                  <a class="btn text-green-600 font-bold" href="#!"
-                    >Read More
-                    <svg
-                      class="w-3 inline-block"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
-                <span
-                  class="hover-cat opacity-0 rounded-2xl bg-red-500 text-white-100 uppercase absolute top-2 right-2 py-1 px-3 text-sm"
-                  >Housing</span
-                >
-              </div>
-            </li>
-            <li class="item-a">
-              <div class="card-slider">
-                <div class="img-box">
-                  <img alt="background-1" src="./images/services/dhapakhel-2-filter-1024x531.jpg" />
-                </div>
-
-                <div class="card-content">
-                  <h2>Housing Hub</h2>
-                  <span>Kathmandu, Nepal</span>
-
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Fugiat rerum ea exercitationem! ...
-                  </p>
-                  <a class="btn text-green-600 font-bold" href="#!"
-                    >Read More
-                    <svg
-                      class="w-3 inline-block"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
-                <span
-                  class="hover-cat opacity-0 rounded-2xl bg-red-500 text-white-100 uppercase absolute top-2 right-2 py-1 px-3 text-sm"
-                  >Housing</span
-                >
-              </div>
-            </li>
-            <li class="item-a">
-              <div class="card-slider">
-                <div class="img-box">
-                  <img alt="background-1" src="./images/services/dhapakhel-2-filter-1024x531.jpg" />
-                </div>
-
-                <div class="card-content">
-                  <h2>Housing Hub</h2>
-                  <span>Kathmandu, Nepal</span>
-
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Fugiat rerum ea exercitationem! ...
-                  </p>
-                  <a class="btn text-green-600 font-bold" href="#!"
-                    >Read More
-                    <svg
-                      class="w-3 inline-block"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
-                <span
-                  class="hover-cat opacity-0 rounded-2xl bg-red-500 text-white-100 uppercase absolute top-2 right-2 py-1 px-3 text-sm"
-                  >Housing</span
-                >
-              </div>
-            </li>
-            <li class="item-a">
-              <div class="card-slider">
-                <div class="img-box">
-                  <img alt="background-1" src="./images/services/dhapakhel-2-filter-1024x531.jpg" />
-                </div>
-
-                <div class="card-content">
-                  <h2>Housing Hub</h2>
-                  <span>Kathmandu, Nepal</span>
-
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Fugiat rerum ea exercitationem! ...
-                  </p>
-                  <a class="btn text-green-600 font-bold" href="#!"
-                    >Read More
-                    <svg
-                      class="w-3 inline-block"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
-                <span
-                  class="hover-cat opacity-0 rounded-2xl bg-red-500 text-white-100 uppercase absolute top-2 right-2 py-1 px-3 text-sm"
-                  >Housing</span
-                >
-              </div>
-            </li>
-            <li class="item-a">
-              <div class="card-slider">
-                <div class="img-box">
-                  <img alt="background-1" src="./images/services/dhapakhel-2-filter-1024x531.jpg" />
-                </div>
-
-                <div class="card-content">
-                  <h2>Housing Hub</h2>
-                  <span>Kathmandu, Nepal</span>
-
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Fugiat rerum ea exercitationem! ...
-                  </p>
-                  <a class="btn text-green-600 font-bold" href="#!"
-                    >Read More
-                    <svg
-                      class="w-3 inline-block"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      ></path>
-                    </svg>
-                  </a>
-                </div>
-                <span
-                  class="hover-cat opacity-0 rounded-2xl bg-red-500 text-white-100 uppercase absolute top-2 right-2 py-1 px-3 text-sm"
-                  >Housing</span
-                >
-              </div>
-            </li>
-          </ul>
-        </section>
-      </div> -->
-
-      <!-- THIRD SECTION -->
-
-      <!-- <div class="thirdSection">
-        <div class="sectionHeader">
-          <h3>Offers</h3>
-        </div>
-        <div class="offersRow">
-          <div class="offersCol">
-            <div class="offerCard">
-              <div class="title">
-                <h1>Test offers</h1>
-              </div>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem .
-              </div>
-            </div>
-          </div>
-          <div class="offersCol">
-            <div class="offerCard">
-              <div class="title">
-                <h1>Test offers</h1>
-              </div>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem .
-              </div>
-            </div>
-          </div>
-          <div class="offersCol">
-            <div class="offerCard">
-              <div class="title">
-                <h1>Test offers</h1>
-              </div>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem consectetur adipisicing elit. Fugiat
-                rerum ea exercitationem .
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <link rel="stylesheet" href="custom.css"> -->
-
-      <!-- ABOUT SECTION -->
-      <!-- <section class="bg-white-100 py-12 px-12 w-3/4 m-auto">
-        <div class="md:flex md:justify-end relative tilt">
-          <div
-            class="py-16 px-16 bg-gray-100 w-2/4 absolute details-box shadow-lg"
-          >
-            <h3 class="font-bold text-3xl inline-block relative before-this mb-6">
-              About <span class="brand-first">Civil</span>
-              <span class="brand-last">Homes</span>
-            </h3>
-
-            <p class="text-align about-description">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut
-              sapiente, exercitationem quo tempora eos a eius aliquam, voluptatem
-              quae corrupti explicabo? Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Aut sapiente, exercitationem quo tempora eos a
-              eius aliquam, voluptatem
-            </p>
-            <a class="read-more-btn" href="#!">Know More About Us</a>
-          </div>
-
-          <div class="w-2/3">
-            <img
-              alt="about image"
-              class="w-full h-auto object-cover"
-              src="images/dhapakhel-1-filter.jpg"
-            />
-          </div>
-        </div>
-      </section> -->
 
       <!-- FEATURED SECTION -->
-
       <div class="featuredSection">
         <div class="siteInfos">
           <div class="topInfo">
             <h1>
-              {{promotedProject.name}}
+              {{mainHomeData.promotedProject.name}}
             </h1>
-            <p>{{promotedProject.description}}</p>
-              <img src="{{ promotedProjectImages.0.image.image.url }}" alt="">
+            <p>{{mainHomeData.promotedProject.description}}</p>
+              <img src="{{ mainHomeData.promotedProject.project_images.all.0.image.url }}" alt="">
           </div>
           <hr>
           <div class="captionInfo">
             <div class="caption">
-              <h5>{{ promotedProjectInfos.0.info.name }}</h5>
-              <p>{{ promotedProjectInfos.0.value }}</p>
+              <h5>{{ mainHomeData.promotedProject.amenities.all.0.name }}</h5>
+              <p>{{ mainHomeData.promotedProject.amenities.all.0.value }}</p>
             </div>
             <div class="caption">
-              <h5>{{ promotedProjectInfos.1.info.name }}</h5>
-              <p>{{ promotedProjectInfos.1.value }}</p>
+              <h5>{{ mainHomeData.promotedProject.amenities.all.1.name }}</h5>
+              <p>{{ mainHomeData.promotedProject.amenities.all.1.value }}</p>
             </div>
             <div class="caption">
-              <h5>{{ promotedProjectInfos.2.info.name }}</h5>
-              <p>{{ promotedProjectInfos.2.value }}</p>
+              <h5>{{ mainHomeData.promotedProject.amenities.all.2.name }}</h5>
+              <p>{{ mainHomeData.promotedProject.amenities.all.2.value }}</p>
             </div>
           </div>
           <div class="moreInfo">
-            <button><a href="{% url 'project_detail' id=promotedProject.id %}">Explore the whole site</a></button>
+            <button><a href="{% url 'project_detail' id=mainHomeData.promotedProject.id %}">Explore the whole site</a></button>
           </div>
         </div>
         <div class="sitePlan">
           <div class="siteView">
-            <div class="siteTypes">
-            {% for promotedProjectHouseType in promotedProjectHouseTypes %}
+          <div class="project-gallery-slider">
+        
+            <ul id="project-gallery-slider">
+                {% for image in mainHomeData.promotedProject.project_images.all %}
+                <li data-thumb="{{ image.image.url }}"><img src="{{ image.image.url }}" alt=""></li>
+                {% endfor %}
+            </ul>
+
+          </div>
+            {% comment %} <div class="siteTypes">
+            {% for promotedProjectHouseType in mainHomeData.promotedProjectHouseTypes %}
               <button onclick="floorScrollController({{promotedProjectHouseType.name}})" class="active">{{promotedProjectHouseType.name}}</button>
             {% endfor %}
-            </div>
-            <div id="siteViewPicture" class="siteViewPicture">
+            </div> {% endcomment %}
+            {% comment %} <div id="siteViewPicture" class="siteViewPicture">
               <div class="type">
                 <div id="A_G" class="floor">
                   <img src="{% static 'images/floor_plans/test_floor_plan1.png'%}" alt="">
@@ -614,67 +200,65 @@
                 </div>
               </div>
 
-            </div>
-            <div class="floors">
+            </div> {% endcomment %}
+            {% comment %} <div class="floors">
               <button onclick="floorScrollController(S_G)" class="active">Ground Floor</button>
               <button onclick="floorScrollController(S_F)">First Floor</button>
               <button onclick="floorScrollController(S_S)">Second Floor</button>
-            </div>
+            </div> {% endcomment %}
           </div>
           <div class="siteOverview">
             <div class="header">
-              <h1>Floor Plan Overview</h1>
+              <h1>Overview</h1>
             </div>
             <div class="floorPlanInfos">
               <div class="col">
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.0.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.0.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.0.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.0.description }}</p>
                 </div>
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.4.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.4.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.4.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.4.description }}</p>
                 </div>
               </div>
 
               <div class="col">
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.1.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.1.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.1.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.1.description }}</p>
                 </div>
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.5.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.5.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.5.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.5.description }}</p>
                 </div>
               </div>
 
               <div class="col">
                <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.2.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.2.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.2.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.2.description }}</p>
                 </div>
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.6.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.6.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.6.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.6.description }}</p>
                   </div>
               </div>
 
               <div class="col">
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.3.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.3.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.3.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.3.description }}</p>
                 </div>
                 <div class="floorPlanInfo">
-                  <h5>{{ promotedProjectInfos.7.info.name }}</h5>
-                  <p>{{ promotedProjectInfos.7.value }}</p>
+                  <h5>{{ mainHomeData.promotedProject.amenities.all.7.name }}</h5>
+                  <p>{{ mainHomeData.promotedProject.amenities.all.7.description }}</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-
 
 
       <!-- MAP SECTION -->
@@ -745,7 +329,7 @@
         <h1>Our Associates Companies</h1>
         
         <ul class="cS-hidden" id="companiesSlider">
-        {% for company in companies %}
+        {% for company in mainHomeData.companies.all %}
           <li class="item-a">
             <div class="companiesTiles">
               <img src="{{ company.companyLogo.image.url }}" alt="" />
@@ -772,6 +356,19 @@
       </div>
 
       <!-- New Footer -->
+      <script>
+        
+          $(document).ready(function() {
+                $('#project-gallery-slider').lightSlider({
+                    item:1,
+                    slideMargin:0,
+                    loop:true,
+                    controls: true,
+                    pager: false,
+                });
+            });
+        
+      </script>
 
 {% endblock content %}
       

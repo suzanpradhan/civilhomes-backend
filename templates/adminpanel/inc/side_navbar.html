@@ -5,9 +5,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{% static 'images/logo.png' %}" alt="AdminLTE Logo" class="brand-image"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">CivilHomes Admin</span>
+      <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -54,7 +54,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{% url 'admin-homepage-general-settings' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General Settings</p>
                 </a>
@@ -73,13 +73,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{% url 'admin-project-add' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add New Project</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{% url 'admin-project-all' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Projects</p>
                 </a>
@@ -88,7 +88,7 @@
           </li>
 
           {% comment %} BLOG {% endcomment %}
-          <li class="nav-item has-treeview menu-open">
+          {% comment %} <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-rss"></i>
               <p>
@@ -104,10 +104,10 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> {% endcomment %}
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{% url 'admin-logout' %}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Log Out

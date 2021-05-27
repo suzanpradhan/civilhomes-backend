@@ -26,7 +26,7 @@ function change_theme(theme){
         r.style.setProperty('--companiesBoxShadow', '0px 5px 20px rgb(190, 62, 53, 0.1)');
         r.style.setProperty('--buttonBoxShadow', '0px 20px 99px rgb(190, 62, 53, 0.9)');
         
-        document.getElementById('themeSwitcherIcon').src = "images/icons/smiling-face-outline.svg";
+        document.getElementById('themeSwitcherIcon').src = smileIcon;
     
     }
     else if (theme=='Light') {
@@ -49,7 +49,7 @@ function change_theme(theme){
         r.style.setProperty('--fadeHeader', 'rgba(0, 0, 0, 0.2)');
         r.style.setProperty('--buttonBoxShadow', '0px 20px 59px rgb(0, 0, 0, 0.14)');  
     
-        document.getElementById('themeSwitcherIcon').src = "images/icons/sun-outline.svg";
+        document.getElementById('themeSwitcherIcon').src = sunIcon;
 
     }
     else if (theme=='Dark') {
@@ -72,7 +72,7 @@ function change_theme(theme){
         r.style.setProperty('--fadeHeader', 'rgba(27, 32, 36, 0.8)');
         r.style.setProperty('--buttonBoxShadow', '0px 20px 59px rgb(0, 0, 0, 0.14)');  
     
-        document.getElementById('themeSwitcherIcon').src = "images/icons/moon-outline.svg";
+        document.getElementById('themeSwitcherIcon').src = moonIcon;
 
     }
 }
