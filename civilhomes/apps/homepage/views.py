@@ -23,7 +23,7 @@ class HomePageView(TemplateView):
         # projects_floorplans = {}
         # for promotedProjectHouseType  in promotedProjectHouseTypes:
         #     projects_floorplans[promotedProjectHouseType] = floorplan_models.FloorPlan.objects.filter(project=promotedProject, house_type=promotedProjectHouseType)
-        # ongoingProjects = mainHomeData.ongoingProjects.all()
+        ongoingProjects = mainHomeData.ongoingProjects.all()
         ongoingProjectsLocation = json.Serializer().serialize([(projects_models.Location.objects.get(id=ongoingProject.location.id)) for ongoingProject in mainHomeData.ongoingProjects.all()])
         # print(ongoingProjectsLocation)
         # companies = mainHomeData.companies.all()
@@ -44,7 +44,7 @@ class HomePageView(TemplateView):
                     # "promotedProjectInfos":promotedProjectInfos, 
                     # "projects_floorplans":projects_floorplans, 
                     # "promotedProjectHouseTypes":promotedProjectHouseTypes,
-                    # "ongoingProjectsJson": json.Serializer().serialize(ongoingProjects),
+                    "ongoingProjectsJson": json.Serializer().serialize(ongoingProjects),
                     "ongoingProjectsLocation": ongoingProjectsLocation,
                     # "promotedProjectImages":promotedProjectImages
                     }
