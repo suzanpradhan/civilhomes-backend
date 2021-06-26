@@ -1,0 +1,250 @@
+
+/* FEATURED SECTION */
+
+.featuredSection{
+    background-color: var(--backgroundColor);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-top: 12rem;
+  margin-bottom: 5rem;
+  padding: 0px 3rem;
+}
+
+.siteInfos{
+    width: 35%;
+    background-color: var(--primaryCardColor);
+    padding: 20px;
+    -webkit-box-shadow: var(--cardBoxShadow);
+            box-shadow: var(--cardBoxShadow);
+}
+
+.topInfo{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.topInfo h1{
+    font-family: Felix;
+    font-size: 28px;
+    color: var(--primaryColor);
+}
+
+.topInfo p{
+    font-family: Gilroy;
+    font-size: 14px;
+    margin: 8px 0px;
+    color: #bfbfbf;
+}
+
+.topInfo img{
+    height: 200px;
+    border-radius: 12px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    margin: 12px 0px;
+    -o-object-position: center;
+       object-position: center;
+    position: relative;
+}
+
+
+.captionInfo{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 8px;
+}
+
+.captionInfo .caption h5{
+    font-family: Gilroy-bold;
+    font-size: 20px;
+    color: var(--primaryColor);
+}
+
+.captionInfo .caption p{
+    font-family: Gilroy;
+    font-size: 14px;
+    color: var(--secondaryColor);
+}
+
+.moreInfo button{
+    border-radius: 6px;
+    background-color: var(--accentButtonColor);
+    font-family: Gilroy;
+    font-size: 14px;
+    color: var(--primaryColor);
+    padding: 7px 12px;
+    float: right;
+    margin-top: 10px;
+}
+
+.sitePlan{
+    width: 65%;
+    margin-left: 20px;
+    background-color: var(--backgroundColor);
+    -webkit-box-shadow: var(--cardBoxShadow);
+            box-shadow: var(--cardBoxShadow);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.project-infos-wrapper .sitePlan{
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.siteView{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 20px;
+}
+.siteView .siteTypes button{
+    padding: 5px 9px;
+    font-family: Gilroy;
+    font-size: 14px;
+    margin: 0px 3px;
+    color: var(--secondaryTextColor);
+    border: #bfbfbf;
+}
+
+.siteView .siteTypes button.active{
+    background-color: var(--accentButtonColor);
+    color: #fff;
+    border: none;
+}
+
+.siteView .siteViewPicture{
+    min-height: 320px;
+    margin: 9px 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    overflow-x: scroll;
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+}
+
+.siteViewPicture .type{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.siteViewPicture .type .floor{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 20px;
+    height: 320px;
+}
+
+.siteViewPicture .type .floor img{
+    -o-object-position: center;
+       object-position: center;
+    -o-object-fit: contain;
+       object-fit: contain;
+}
+
+.siteView .floors button{
+    font-family: Gilroy;
+    font-size: 16px;
+    color: var(--secondaryTextColor);
+    margin: 0px 12px;
+}
+
+.siteView .floors button.active{
+    font-family: Gilroy-bold;
+    color: var(--primaryTextColor);
+}
+
+
+.siteOverview{
+    background-color: var(--primaryCardColor);
+    padding: 20px;
+    height: 100%;
+}
+
+.siteOverview .header{
+    font-family: Felix;
+    font-size: 21px;
+    color: var(--primaryColor);
+}
+
+.siteOverview .floorPlanInfos{
+    margin-top: 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+.siteOverview .floorPlanInfos .col{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.floorPlanInfo{
+    margin-right: 52px;
+    margin-bottom: 8px;
+}
+.floorPlanInfo h5{
+    font-family: Gilroy;
+    font-size: 18px;
+    color: #fff;
+}
+
+.floorPlanInfo p{
+    font-family: Gilroy;
+    font-size: 14px;
+    color: #bfbfbf;
+}
