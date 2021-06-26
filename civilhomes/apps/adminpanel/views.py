@@ -273,10 +273,10 @@ class AddProject(TemplateView):
         name = request.POST.get('project_name')
         description = request.POST.get('project_description')
         address = request.POST.get('project_location')
-        project_brochure = request.FILES['project_brochure']
+        
         project_status = request.POST.get('project_status')
         project_plan_name = request.POST.get('project_plan_name')
-        project_plan_file = request.FILES['project_plan_file']
+        
 
         amenities = request.POST.getlist('amenities[]')
 
@@ -296,9 +296,11 @@ class AddProject(TemplateView):
             project.description=description
         if project_status:
             project.status=project_status
-        if project_brochure:
+        if 'project_brochure' in request.FILES:
+            project_brochure = request.FILES['project_brochure']
             project.brochure_url=project_brochure
-        if project_plan_file:
+        if 'project_plan_file' in request.FILES:
+            project_plan_file = request.FILES['project_plan_file']
             projectPlan=ProjectPlan(name=project_plan_name, sheet_url=project_plan_file)
             projectPlan.save()
             project.project_plan = projectPlan

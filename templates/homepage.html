@@ -1,7 +1,5 @@
-{% extends 'index.html' %}
-{% load static %}
-{% block content %}
-      <!-- <div class="theme-switcher">
+{% extends 'index.html' %} {% load static %} {% block content %}
+<!-- <div class="theme-switcher">
         <div class="theme-changer">
           <p>Night</p>
           <label class="switch">
@@ -11,10 +9,7 @@
 
         </div>
       </div> -->
-{% block navbar %}
-{% include 'inc/navbar.html' %}
-{% endblock navbar %}
-
+{% block navbar %} {% include 'inc/navbar.html' %} {% endblock navbar %}
 
 <!-- FIRST SECTION -->
 <div class="firstSection">
@@ -22,14 +17,11 @@
     <div class="details-col header-textarea">
       <div class="detail-text">
         <h1>{{mainHomeData.headerTitle}}</h1>
-        <p>
-          {{mainHomeData.headerDescription}}
-        </p>
+        <p>{{mainHomeData.headerDescription}}</p>
       </div>
       <button class="explore-btn">Explore</button>
     </div>
     <script>
-    
       var swiper = new Swiper(".swiper-container", {
         effect: "coverflow",
         grabCursor: true,
@@ -49,327 +41,483 @@
           el: ".swiper-pagination",
         },
       });
-      
     </script>
   </div>
 
-  <script>
-    var ongoingProjectsLocation = {{ ongoingProjectsLocation | safe }};
-    console.log(ongoingProjectsLocation);
-    var ongoingProjectsJson = {{ ongoingProjectsJson | safe }};
-    console.log(ongoingProjectsJson);
-  </script>
+
 
   <div class="scrollDownIndicator">
-    <img src="{% static 'images/icons/arrow-ios-downward-outline.svg'%}" alt="" />
+    <img
+      src="{% static 'images/icons/arrow-ios-downward-outline.svg'%}"
+      alt=""
+    />
   </div>
 </div>
 
-
-      <!-- SERVICE SECTION -->
-      <div class="serviceSection">
-        <div class="sectionHeader">
-          <h4>Our Services</h4>
-          <p>Discover a place you'll love to live.</p>
-        </div>
-        <div class="serviceCards">
-        {% for service in mainHomeData.services.all %}
-          <div class="serviceCard">
-            <div class="coverImage">
-              <img
-                src="{{service.image.image.url}}"
-                alt=""
-              />
-            </div>
-            <div class="serviceCardContent">
-              <h2>{{service.title}}</h2>
-              <p>
-                {{service.description}}
-              </p>
-            </div>
-          </div>
-        {% endfor %}
-        </div>
+<!-- SERVICE SECTION -->
+<div class="serviceSection">
+  <div class="sectionHeader">
+    <h4>Our Services</h4>
+    <p>Discover a place you'll love to live.</p>
+  </div>
+  <div class="serviceCards">
+    {% for service in mainHomeData.services.all %}
+    <div class="serviceCard">
+      <div class="coverImage">
+        <img src="{{service.image.image.url}}" alt="" />
       </div>
+      <div class="serviceCardContent">
+        <h2>{{service.title}}</h2>
+        <p>{{service.description}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
-
-
-      <!-- VIDEO SECTION -->
-      <div class="videoSection">
-        <div class="sectionHeader">
-          <h3>
-            First time in Nepal, Civil Homes brings in real 5-star Hotel
-            experience at home with love.
-          </h3>
-          <p>That's the reason we love calling it 5-star Hometel.</p>
-          <button>Download Brochuer</button>
-        </div>
-        <div class="player">
-        {% if mainHomeData.videoSection.video %}
-          <video id="videoSpeed" loop muted controls>
-            <source src= {{mainHomeData.videoSection.video.url}} type="video/mp4">
-          </video>
-        {% else %}
-            <iframe width="100%" height="500px"  src="{{mainHomeData.videoSection.videoLink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        {% endif %}
-          <!-- <img src="images/player_back.png" alt="" /> -->
-          <!-- <button>
+<!-- VIDEO SECTION -->
+<div class="videoSection">
+  <div class="sectionHeader">
+    <h3>
+      First time in Nepal, Civil Homes brings in real 5-star Hotel experience at
+      home with love.
+    </h3>
+    <p>That's the reason we love calling it 5-star Hometel.</p>
+    <button>Download Brochuer</button>
+  </div>
+  <div class="player">
+    {% if mainHomeData.videoSection.video %}
+    <video id="videoSpeed" loop muted controls>
+      <source src="{{mainHomeData.videoSection.video.url}}" type="video/mp4" />
+    </video>
+    {% else %}
+    <iframe
+      width="100%"
+      height="500px"
+      src="{{mainHomeData.videoSection.videoLink}}"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    {% endif %}
+    <!-- <img src="images/player_back.png" alt="" /> -->
+    <!-- <button>
             <img src="images/icons/play_triangle.svg" alt="" />
           </button> -->
-        </div>
+  </div>
+</div>
+
+<!-- FEATURED SECTION -->
+<div class="featuredSection">
+  <div class="siteInfos">
+    <div class="topInfo">
+      <h1>{{mainHomeData.promotedProject.name}}</h1>
+      <p>{{mainHomeData.promotedProject.description}}</p>
+      <img
+        src="{{ mainHomeData.promotedProject.project_images.all.0.image.url }}"
+        alt=""
+      />
+    </div>
+    <hr />
+    <div class="captionInfo">
+      <div class="caption">
+        <h5>{{ mainHomeData.promotedProject.amenities.all.0.name }}</h5>
+        <p>{{ mainHomeData.promotedProject.amenities.all.0.value }}</p>
       </div>
-
-
-      <!-- FEATURED SECTION -->
-      <div class="featuredSection">
-        <div class="siteInfos">
-          <div class="topInfo">
-            <h1>
-              {{mainHomeData.promotedProject.name}}
-            </h1>
-            <p>{{mainHomeData.promotedProject.description}}</p>
-              <img src="{{ mainHomeData.promotedProject.project_images.all.0.image.url }}" alt="">
-          </div>
-          <hr>
-          <div class="captionInfo">
-            <div class="caption">
-              <h5>{{ mainHomeData.promotedProject.amenities.all.0.name }}</h5>
-              <p>{{ mainHomeData.promotedProject.amenities.all.0.value }}</p>
-            </div>
-            <div class="caption">
-              <h5>{{ mainHomeData.promotedProject.amenities.all.1.name }}</h5>
-              <p>{{ mainHomeData.promotedProject.amenities.all.1.value }}</p>
-            </div>
-            <div class="caption">
-              <h5>{{ mainHomeData.promotedProject.amenities.all.2.name }}</h5>
-              <p>{{ mainHomeData.promotedProject.amenities.all.2.value }}</p>
-            </div>
-          </div>
-          <div class="moreInfo">
-            <button><a href="{% url 'project_detail' id=mainHomeData.promotedProject.id %}">Explore the whole site</a></button>
-          </div>
-        </div>
-        <div class="sitePlan">
-          <div class="siteView">
-          <div class="project-gallery-slider">
-        
-            <ul id="project-gallery-slider">
-                {% for image in mainHomeData.promotedProject.project_images.all %}
-                <li data-thumb="{{ image.image.url }}"><img src="{{ image.image.url }}" alt=""></li>
-                {% endfor %}
-            </ul>
-
-          </div>
-            {% comment %} <div class="siteTypes">
-            {% for promotedProjectHouseType in mainHomeData.promotedProjectHouseTypes %}
-              <button onclick="floorScrollController({{promotedProjectHouseType.name}})" class="active">{{promotedProjectHouseType.name}}</button>
-            {% endfor %}
-            </div> {% endcomment %}
-            {% comment %} <div id="siteViewPicture" class="siteViewPicture">
-              <div class="type">
-                <div id="A_G" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan1.png'%}" alt="">
-                </div>
-                <div id="A_F" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan2.png'%}" alt="">
-                </div>
-                <div id="A_S" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan3.png'%}" alt="">
-                </div>
-              <!-- </div>
-              <div class="type"> -->
-                <div id="S_G" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan1.png'%}" alt="">
-                </div>
-                <div id="S_F" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan2.png'%}" alt="">
-                </div>
-                <div id="S_S" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan3.png'%}" alt="">
-                </div>
-              <!-- </div>
-              <div class="type"> -->
-                <div id="SD_G" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan1.png'%}" alt="">
-                </div>
-                <div id="SD_F" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan2.png'%}" alt="">
-                </div>
-                <div id="SD_S" class="floor">
-                  <img src="{% static 'images/floor_plans/test_floor_plan3.png'%}" alt="">
-                </div>
-              </div>
-
-            </div> {% endcomment %}
-            {% comment %} <div class="floors">
-              <button onclick="floorScrollController(S_G)" class="active">Ground Floor</button>
-              <button onclick="floorScrollController(S_F)">First Floor</button>
-              <button onclick="floorScrollController(S_S)">Second Floor</button>
-            </div> {% endcomment %}
-          </div>
-          <div class="siteOverview">
-            <div class="header">
-              <h1>Overview</h1>
-            </div>
-            <div class="floorPlanInfos">
-              <div class="col">
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.0.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.0.description }}</p>
-                </div>
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.4.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.4.description }}</p>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.1.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.1.description }}</p>
-                </div>
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.5.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.5.description }}</p>
-                </div>
-              </div>
-
-              <div class="col">
-               <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.2.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.2.description }}</p>
-                </div>
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.6.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.6.description }}</p>
-                  </div>
-              </div>
-
-              <div class="col">
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.3.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.3.description }}</p>
-                </div>
-                <div class="floorPlanInfo">
-                  <h5>{{ mainHomeData.promotedProject.amenities.all.7.name }}</h5>
-                  <p>{{ mainHomeData.promotedProject.amenities.all.7.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="caption">
+        <h5>{{ mainHomeData.promotedProject.amenities.all.1.name }}</h5>
+        <p>{{ mainHomeData.promotedProject.amenities.all.1.value }}</p>
       </div>
-
-
-      <!-- MAP SECTION -->
-      <div class="mapContainer">
-        <div class="sectionHeader">
-          <h3>Ongoing Projects</h3>
-          <p>Here are some of our ongoing projects.</p>
-        </div>
-        <div class="mapSection">
-          <div class="map" id="map"></div>
-          <div class="mapInfo">
-            <div class="tabs">
-              <ul>
-                {% for ongoingProject in mainHomeData.ongoingProjects.all %}
-                  <li>
-                  <a
-                    class="active"
-                    id="phase{{ongoingProject.id}}_tab"
-                    onclick="scrollController(phase{{ongoingProject.id}})"
-                    >{{ongoingProject.name}}</a
-                  >
-                </li>
-                {% endfor %}
-              </ul>
-            </div>
-            
-            <div class="mapCards" id="mapCards">
-              {% for ongoingProjectDetail in mainHomeData.ongoingProjects.all %}
-
-                <div class="mapCard active" id="phase{{ ongoingProjectDetail.id }}">
-                  <div class="headerImage">
-                    <img src="{% static 'images/services/dhapakhel-4-filter-1024x678.jpg'%}" />
-                  </div>
-                  <h3>{{ ongoingProjectDetail.name }}</h3>
-                  <p>
-                    {{ ongoingProjectDetail.description }}
-                  </p>
-                  <div class="mapViewDetail">
-                    <button> <a href="{% url 'project_detail' id=ongoingProjectDetail.id %}">View Detail</a></button>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-          
-          <script src="{% static 'js/map_flyer.js'%}"></script>
-        </div>
+      <div class="caption">
+        <h5>{{ mainHomeData.promotedProject.amenities.all.2.name }}</h5>
+        <p>{{ mainHomeData.promotedProject.amenities.all.2.value }}</p>
       </div>
-
-      <!-- FIND HOME SECTION -->
-      <form action="/projects/search" method="POST">
-          {% csrf_token %}
-        <div class="findHomeSection">
-          <div class="backgroundimage">
-            <div class="findHomeContent">
-              <h3>Let us help to find your new dream home.</h3>
-              <div class="findHomeForm">
-                <input type="text" name="search_value" value="" placeholder="Type Something Here..." />
-                <button type="submit">Search</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-
-      <!-- ASSOCIATES SECTION -->
-      <div class="forthSection">
-        <h1>Our Associates Companies</h1>
-        
-        <ul class="cS-hidden" id="companiesSlider">
-        {% for company in mainHomeData.companies.all %}
-          <li class="item-a">
-            <div class="companiesTiles">
-              <img src="{{ company.companyLogo.image.url }}" alt="" />
-            </div>
+    </div>
+    <div class="moreInfo">
+      <button>
+        <a href="{% url 'project_detail' id=mainHomeData.promotedProject.id %}"
+          >Explore the whole site</a
+        >
+      </button>
+    </div>
+  </div>
+  <div class="sitePlan">
+    <div class="siteView">
+      <div class="project-gallery-slider">
+        <ul id="project-gallery-slider">
+          {% for image in mainHomeData.promotedProject.project_images.all %}
+          <li data-thumb="{{ image.image.url }}">
+            <img src="{{ image.image.url }}" alt="" />
           </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% comment %}
+      <div class="siteTypes">
+        {% for promotedProjectHouseType in
+        mainHomeData.promotedProjectHouseTypes %}
+        <button
+          onclick="floorScrollController({{promotedProjectHouseType.name}})"
+          class="active"
+        >
+          {{promotedProjectHouseType.name}}
+        </button>
         {% endfor %}
+      </div>
+      {% endcomment %} {% comment %}
+      <div id="siteViewPicture" class="siteViewPicture">
+        <div class="type">
+          <div id="A_G" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan1.png'%}"
+              alt=""
+            />
+          </div>
+          <div id="A_F" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan2.png'%}"
+              alt=""
+            />
+          </div>
+          <div id="A_S" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan3.png'%}"
+              alt=""
+            />
+          </div>
+          <!-- </div>
+              <div class="type"> -->
+          <div id="S_G" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan1.png'%}"
+              alt=""
+            />
+          </div>
+          <div id="S_F" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan2.png'%}"
+              alt=""
+            />
+          </div>
+          <div id="S_S" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan3.png'%}"
+              alt=""
+            />
+          </div>
+          <!-- </div>
+              <div class="type"> -->
+          <div id="SD_G" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan1.png'%}"
+              alt=""
+            />
+          </div>
+          <div id="SD_F" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan2.png'%}"
+              alt=""
+            />
+          </div>
+          <div id="SD_S" class="floor">
+            <img
+              src="{% static 'images/floor_plans/test_floor_plan3.png'%}"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      {% endcomment %} {% comment %}
+      <div class="floors">
+        <button onclick="floorScrollController(S_G)" class="active">
+          Ground Floor
+        </button>
+        <button onclick="floorScrollController(S_F)">First Floor</button>
+        <button onclick="floorScrollController(S_S)">Second Floor</button>
+      </div>
+      {% endcomment %}
+    </div>
+    <div class="siteOverview">
+      <div class="header">
+        <h1>Overview</h1>
+      </div>
+      <div class="floorPlanInfos">
+        <div class="col">
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.0.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.0.description }}
+            </p>
+          </div>
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.4.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.4.description }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.1.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.1.description }}
+            </p>
+          </div>
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.5.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.5.description }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.2.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.2.description }}
+            </p>
+          </div>
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.6.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.6.description }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.3.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.3.description }}
+            </p>
+          </div>
+          <div class="floorPlanInfo">
+            <h5>{{ mainHomeData.promotedProject.amenities.all.7.name }}</h5>
+            <p>
+              {{ mainHomeData.promotedProject.amenities.all.7.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP SECTION -->
+<div class="mapContainer">
+  <div class="sectionHeader">
+    <h3>Ongoing Projects</h3>
+    <p>Here are some of our ongoing projects.</p>
+  </div>
+  <div class="mapSection">
+    <div class="map" id="map"></div>
+    <div class="mapInfo">
+      <div class="tabs">
+        <ul>
+          {% for ongoingProject in mainHomeData.ongoingProjects.all %}
+          <li>
+            <a
+              class="active"
+              id="phase{{ongoingProject.id}}_tab"
+              onclick="scrollController(phase{{ongoingProject.id}})"
+              >{{ongoingProject.name}}</a
+            >
+          </li>
+          {% endfor %}
         </ul>
       </div>
 
-      <!-- LOCATION MAP SECTION -->
-      <div class="locationSection">
-      {% if mainHomeData.location.iframeSnippet != None %}
-        {{ mainHomeData.location.iframeSnippet|safe }}
-        {% endif %}
-        {% comment %} <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.526798787573!2d85.26927769854049!3d27.70742831234713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb227f3edd972b%3A0xa667e251c9b31376!2sCivil%20Homes%20Phase%20VII!5e0!3m2!1sen!2snp!4v1612910960121!5m2!1sen!2snp"
-          height="320"
-          frameborder="0"
-          style="border: 0"
-          allowfullscreen=""
-          aria-hidden="false"
-          tabindex="0"
-        ></iframe> {% endcomment %}
-      </div>
+      <div class="mapCards" id="mapCards">
+        {% for ongoingProjectDetail in mainHomeData.ongoingProjects.all %}
 
-      <!-- New Footer -->
-      <script>
-        
-          $(document).ready(function() {
-                $('#project-gallery-slider').lightSlider({
-                    item:1,
-                    slideMargin:0,
-                    loop:true,
-                    controls: true,
-                    pager: false,
-                });
-            });
-        
-      </script>
+        <div class="mapCard active" id="phase{{ ongoingProjectDetail.id }}">
+          <div class="headerImage">
+            <img
+              src="{% static 'images/services/dhapakhel-4-filter-1024x678.jpg'%}"
+            />
+          </div>
+          <h3>{{ ongoingProjectDetail.name }}</h3>
+          <p>{{ ongoingProjectDetail.description }}</p>
+          <div class="mapViewDetail">
+            <button>
+              <a href="{% url 'project_detail' id=ongoingProjectDetail.id %}"
+                >View Detail</a
+              >
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIND HOME SECTION -->
+<form action="/projects/search" method="POST">
+  {% csrf_token %}
+  <div class="findHomeSection">
+    <div class="backgroundimage">
+      <div class="findHomeContent">
+        <h3>Let us help to find your new dream home.</h3>
+        <div class="findHomeForm">
+          <input
+            type="text"
+            name="search_value"
+            value=""
+            placeholder="Type Something Here..."
+          />
+          <button type="submit">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- ASSOCIATES SECTION -->
+<div class="forthSection">
+  <h1>Our Associates Companies</h1>
+
+  <ul class="cS-hidden" id="companiesSlider">
+    {% for company in mainHomeData.companies.all %}
+    <li class="item-a">
+      <div class="companiesTiles">
+        <img src="{{ company.companyLogo.image.url }}" alt="" />
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- LOCATION MAP SECTION -->
+<div class="locationSection">
+  {% if mainHomeData.location.iframeSnippet != None %} {{
+  mainHomeData.location.iframeSnippet|safe }} {% endif %} {% comment %}
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.526798787573!2d85.26927769854049!3d27.70742831234713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb227f3edd972b%3A0xa667e251c9b31376!2sCivil%20Homes%20Phase%20VII!5e0!3m2!1sen!2snp!4v1612910960121!5m2!1sen!2snp"
+    height="320"
+    frameborder="0"
+    style="border: 0"
+    allowfullscreen=""
+    aria-hidden="false"
+    tabindex="0"
+  ></iframe>
+  {% endcomment %}
+</div>
+
+<!-- New Footer -->
+
+<script>
+  $(document).ready(function () {
+    $("#project-gallery-slider").lightSlider({
+      item: 1,
+      slideMargin: 0,
+      loop: true,
+      controls: true,
+      pager: false,
+    });
+  });
+</script>
+<script>
+var ongoingProjectsLocation = {{ ongoingProjectsLocation | safe }};
+var ongoingProjectsJson = {{ ongoingProjectsJson | safe }};
+  mapboxgl.accessToken =
+    "pk.eyJ1Ijoic3V6YW5wcmFkaGFuIiwiYSI6ImNra3o1cHNoZDBhdGwycG1scTQ0ZWloaWYifQ.ALW63qccXjw6M07h3R0B5A";
+
+  var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11",
+    center: [
+      ongoingProjectsLocation[0].fields.longitude,
+      ongoingProjectsLocation[0].fields.latitude,
+    ],
+    zoom: 15.5,
+    bearing: 27,
+    pitch: 45,
+  });
+  var chapters = {};
+
+  for (i = 0; i < ongoingProjectsJson.length; i++) {
+    chapters["phase" + ongoingProjectsJson[i].pk] = {
+      bearing: 27,
+      center: [
+        ongoingProjectsLocation[i].fields.longitude,
+        ongoingProjectsLocation[i].fields.latitude,
+      ],
+      zoom: 15.5,
+      pitch: 20,
+      tabId: "phase" + ongoingProjectsJson[i].pk + "_tab",
+    };
+  }
+  function scrollToElement(elementId) {
+    // var positionX = 0;
+    // var positionY = 0;
+
+    while (elementId != null) {
+      positionY = positionY = document.getElementById("mapCards").offsetTop;
+      // positionY = document.getElementById("mapCards").getBoundingClientRect().top;
+      document
+        .getElementById(elementId)
+        .scrollTo({ top: positionY, behaviour: "smooth" });
+    }
+  }
+
+  document.getElementById("mapCards").onscroll = function () {
+    var chapterNames = Object.keys(chapters);
+    for (var i = 0; i < chapterNames.length; i++) {
+      var chapterName = chapterNames[i];
+      if (isElementOnScreen(chapterName)) {
+        setActiveChapter(chapterName);
+        break;
+      }
+    }
+  };
+
+  var activeChapterName = "phase" + ongoingProjectsJson[0].pk;
+  var activeTab = "phase" + ongoingProjectsJson[0].pk + "_tab";
+  new mapboxgl.Marker({
+    color: "#E61D1D",
+  })
+    .setLngLat(chapters[activeChapterName].center)
+    .addTo(map);
+  function setActiveChapter(chapterName) {
+    if (chapterName === activeChapterName) return;
+
+    map.flyTo(chapters[chapterName]);
+
+    document
+      .getElementById(chapters[chapterName].tabId)
+      .setAttribute("class", "active");
+    document
+      .getElementById(chapters[activeChapterName].tabId)
+      .setAttribute("class", "");
+    document.getElementById(chapterName).classList.add("active");
+    document.getElementById(activeChapterName).classList.remove("active");
+
+    new mapboxgl.Marker({
+      color: "#E61D1D",
+    })
+      .setLngLat(chapters[chapterName].center)
+      .addTo(map);
+
+    activeChapterName = chapterName;
+    activeTab = chapters[chapterName].tabId;
+  }
+
+  function isElementOnScreen(id) {
+    var element = document.getElementById(id);
+    var bounds = element.getBoundingClientRect();
+    // console.log(document.getElementById("mapCards").getBoundingClientRect().top);
+    // console.log(document.getElementById("mapCards").getBoundingClientRect().bottom);
+    return (
+      bounds.top < window.innerHeight &&
+      bounds.bottom >
+        document.getElementById("mapCards").getBoundingClientRect().top
+    );
+  }
+</script>
 
 {% endblock content %}
-      
-
