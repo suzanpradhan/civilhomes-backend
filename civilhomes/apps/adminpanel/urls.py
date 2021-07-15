@@ -21,6 +21,8 @@ urlpatterns += [
     path('project/image/add', views.AddImage.as_view(), name="admin-image-add"),
     path('project/all', views.ListProject.as_view(), name="admin-project-all"),
     path('project/<int:id>/update', views.UpdateProject.as_view(), name="admin-project-update"),
-    path('project/<int:id>/delete', views.DeleteProject.as_view(), name="admin-project-delete")
+    path('project/<int:id>/delete', views.DeleteProject.as_view(), name="admin-project-delete"),
+    path('service/add', views.Services.as_view(), name="admin-service-add"),
+    path('service/all', views.ListServices.as_view(), name="admin-service-all"),
 ]
 

@@ -554,3 +554,38 @@ class HomepageEdit(TemplateView):
         homepage.ongoingProject = ongoingProject
         homepage.companies = companies
         homepage.save()
+
+class Services(TemplateView):
+    template_name ="adminpanel/services/add_new_services.html"
+    def post(self, request,*args,**kwargs):
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image=request.FILES.get('image')
+        image_name=request.POST.get('image_name')
+        
+        if request.POST.get('dimension'):
+            dimension=request.POST.get('dimension')
+        else:
+            dimension=None
+        if request.POST.get('image_type'):
+            image_type=request.POST.get('image_type')
+        else:
+            image_type=None
+
+        image_src=Image(image_name=image_name,image=image,image_type=image_type)
+        image_src.save()
+        service=Service(title=title,description=description,image=image_src)
+        service.save()
+        return redirect('admin-services-all')
+
+class ListServices(TemplateView):
+    template_name ="adminpanel/services/all_services.html"
+
+    def get(self, request, *args, **kwargs):
+        ServicesAll = Service.objects.all()
+
+        context = {
+            "services": ServicesAll
+        }
+
+        return render(request, self.template_name, context)
