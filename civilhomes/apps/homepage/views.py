@@ -25,7 +25,7 @@ class HomePageView(TemplateView):
         #     projects_floorplans[promotedProjectHouseType] = floorplan_models.FloorPlan.objects.filter(project=promotedProject, house_type=promotedProjectHouseType)
         ongoingProjects = mainHomeData.ongoingProjects.all()
         ongoingProjectsLocation = json.Serializer().serialize([(projects_models.Location.objects.get(id=ongoingProject.location.id)) for ongoingProject in mainHomeData.ongoingProjects.all()])
-        # print(ongoingProjectsLocation)
+        print(ongoingProjects)
         # companies = mainHomeData.companies.all()
         # testPhase = {
         #     "name":"uallal",
