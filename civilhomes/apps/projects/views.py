@@ -41,11 +41,13 @@ class ProjectDetail(TemplateView):
         "On Hold"
         )
         project = Project.objects.get(id=id)
+        projectGallery = image_gallery_models.ImageGallery.objects.filter(project=project)
         project.status = status[project.status-1]
         projectAmenitie = Amenitie.objects.filter(project=project)
         projectProjectInfo = ProjectInfo.objects.filter(project=project)
         context = {
             "project": project,
+            "projectGallery": projectGallery,
             "projectAmenities": projectAmenitie,
             "projectProjectInfos":projectProjectInfo
         }

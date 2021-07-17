@@ -1,19 +1,16 @@
 from django.urls import path
 from . import views
-from . import apis
 
-# URLS OF ADMIN
 urlpatterns = [
     path('dashboard', views.Dashboard.as_view(), name="admin-dashboard"),
-    path('login', views.AdminLogin.as_view(), name="admin-login"),
-    path('logout/', views.logoutAdminLogOut, name='admin-logout')
 ]
 
-# HOMEPAGE URLS
 urlpatterns += [
     path('homepage/edit', views.HomePageGeneralSettings.as_view(), name="admin-homepage-general-settings")
 ]
 
+<<<<<<< Updated upstream
+=======
 # PROJECT URLS
 urlpatterns += [
     path('project/add', views.AddProject.as_view(), name="admin-project-add"),
@@ -24,5 +21,8 @@ urlpatterns += [
     path('project/<int:id>/delete', views.DeleteProject.as_view(), name="admin-project-delete"),
     path('service/add', views.Services.as_view(), name="admin-service-add"),
     path('service/all', views.ListServices.as_view(), name="admin-service-all"),
+    path('service/<int:id>/update', views.UpdateServices.as_view(), name="admin-service-update"),
+    path('service/<int:id>/delete', views.DeleteProject.as_view(), name="admin-service-delete"),
 ]
 
+>>>>>>> Stashed changes
