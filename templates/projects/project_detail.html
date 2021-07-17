@@ -13,8 +13,8 @@
         <div class="project-gallery-slider">
         
             <ul id="project-gallery-slider">
-                {% for image in projectGallery %}
-                <li data-thumb="{{ image.image.image.url }}"><img src="{{ image.image.image.url }}" alt=""></li>
+                {% for image in project.project_images.all %}
+                <li data-thumb="{{ image.image.url }}"><img src="{{ image.image.url }}" alt=""></li>
                 {% endfor %}
             </ul>
 
@@ -41,7 +41,7 @@
                 </div>
                 <br>
 
-                <div class="project-allinfos-section">
+                {% comment %} <div class="project-allinfos-section">
                     <h1>INFOS</h1>
                     <div class="infos-section">
                         {% for projectProjectInfo in projectProjectInfos %}
@@ -55,7 +55,7 @@
                         {% endfor %}
                     </div>
                     
-                </div>
+                </div> {% endcomment %}
 
                 <div class="project-allinfos-section">
                     <h1>Amenities</h1>
@@ -63,10 +63,10 @@
 
                         {% for projectAmenitie in projectAmenities %}
                             <div class="info-card">
-                            <img src="./images/facebook.svg" alt="">
+                            {% comment %} <img src="./images/facebook.svg" alt=""> {% endcomment %}
                             <div class="info-detail">
                                 <p>{{ projectAmenitie.name }}</p>
-                                <h5>{{ projectAmenitie.description }}}</h5>
+                                <h5>{{ projectAmenitie.description }}</h5>
                             </div>
                         </div>
                         {% endfor %}
@@ -74,7 +74,7 @@
                     
                 </div>
 
-                <div class="sitePlan">
+                {% comment %} <div class="sitePlan">
                     <div class="siteView">
                       <div class="siteTypes">
                         <button onclick="floorScrollController(A_G)" class="active">Type A</button>
@@ -124,7 +124,7 @@
                       
                       </div>
                     </div>
-                  </div>
+                  </div> {% endcomment %}
             </div>
             <div class="project-infos-right">
 

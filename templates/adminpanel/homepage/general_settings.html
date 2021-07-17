@@ -20,7 +20,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+        <form role="form" action="{% url 'admin-homepage-general-settings' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="row">
+            
                 <div class="col-md-6">
                     <div class="card card-primary">
                         <div class="card-header">
@@ -30,27 +33,23 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="header_title">Header Title</label>
-                                    <input type="text" class="form-control" name="header_title" id="header_title" placeholder="eg. Spicy Burger" REQUIRED>
+                                    <input type="text" class="form-control" name="header_title" value="{{homepageData.headerTitle}}" id="header_title" placeholder="eg. Spicy Burger" REQUIRED>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="summernote">Description</label>
                                     <div class="card-body">
-                                        <textarea name="header_description" id="summernote">
-                                            Place some text here.
-                                        </textarea>
+                                        <textarea name="header_description" id="summernote" value="{{homepageData.headerDescription}}">{{homepageData.headerDescription}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Services</label>
                                     <div class="select2-purple">
-                                        <select class="select2" name="food_variations" id="add_food_variations_select2" multiple="multiple" data-placeholder="Select Services" data-dropdown-css-class="select2-purple" style="width: 100%;">
-                                        <option>One</option>
-                                        <option>Two</option>
-                                        <option>Three</option>
-                                        <option>Four</option>
-                                        <option>Five</option>
+                                        <select class="select2" name="services" id="add_services_select2" multiple="multiple" data-placeholder="Select Services" data-dropdown-css-class="select2-purple" style="width: 100%;">
+                                        {% for service in services %}
+                                        <option value="{{service.id}}">{{service.title}}</option>
+                                        {% endfor %}
                                     </select>
                                     </div>
                                 </div>
@@ -63,27 +62,22 @@
                         </div>
                         <!-- /.card-header -->
                             <div class="card-body">
-
                                 <div class="form-group">
                                     <label>Promoted Project</label>
-                                    <select class="form-control select2" id="add_food_menu_select2" name="food_menu" style="width: 100%;">
-                                        <option>One</option>
-                                        <option>Two</option>
-                                        <option>Three</option>
-                                        <option>Four</option>
-                                        <option>Five</option>
+                                    <select class="form-control select2" id="add_promoted_project_select2" name="promoted_project" style="width: 100%;">
+                                    {% for project in projects %}
+                                    <option value="{{project.id}}">{{project.name}}</option>
+                                    {% endfor %}
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Ongoing Projects</label>
                                     <div class="select2-purple">
-                                        <select class="select2" name="food_variations" id="" multiple="multiple" data-placeholder="Select Ongoing Projects" data-dropdown-css-class="select2-purple" style="width: 100%;">
-                                        <option>One</option>
-                                        <option>Two</option>
-                                        <option>Three</option>
-                                        <option>Four</option>
-                                        <option>Five</option>
+                                        <select class="select2" name="ongoing_projects" id="add_ongoing_project_select2" multiple="multiple" data-placeholder="Select Ongoing Projects" data-dropdown-css-class="select2-purple" style="width: 100%;">
+                                        {% for project in projects %}
+                                        <option value="{{project.id}}">{{project.name}}</option>
+                                        {% endfor %}
                                     </select>
                                     </div>
                                 </div>
@@ -91,6 +85,8 @@
                     </div>
                 </div>
 
+
+                <!-- PROMOTIONAL VIDEOS -->
                 <div class="col-md-6">
                     <div class="card card-primary">
                         <div class="card-header">
@@ -103,46 +99,64 @@
                                     <label for="exampleInputFile">Upload Video</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="food_image" id="exampleInputFile">
+                                            <input type="file" class="custom-file-input" name="video" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="header_title">Youtube Video Link</label>
-                                    <input type="text" class="form-control" name="header_title" id="header_title" placeholder="eg. https://www.youtube.com/watch?v=KR54fHpcxEQ">
+                                    <label for="youtube_video_link">Youtube Video Link</label>
+                                    <input type="text" class="form-control" name="youtube_video_link" value="{{homepageData.videoSection.videoLink}}" id="youtube_video_link" placeholder="eg. https://www.youtube.com/watch?v=KR54fHpcxEQ">
                                 </div>
                             </div>
                     </div>
 
+
+                    <!-- OFFICE INFORMATION -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Office Location</h3>
+                            <h3 class="card-title">Office Information</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                             <div class="card-body">
+
                                 <div class="form-group">
-                                    <label for="header_title">Address</label>
-                                    <input type="text" class="form-control" name="header_title" id="header_title" placeholder="eg. Kathmandu, Nepal" REQUIRED>
+                                    <label for="office_location">Address</label>
+                                    <input type="text" class="form-control" name="office_location" value="{{homepageData.contactInfo.address}}" id="office_location" placeholder="eg. Kathmandu, Nepal">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="office_contact_email">Contact Email</label>
+                                    <input type="text" class="form-control" name="office_contact_email" value="{{homepageData.contactInfo.contactEmail}}" id="office_contact_email" placeholder="eg. info@civilhomes.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="office_phone">Phone</label>
+                                    <input type="text" class="form-control" name="office_phone" value="{{homepageData.contactInfo.phone}}" id="office_phone" placeholder="eg. 977 9841123456">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="office_fax">Fax</label>
+                                    <input type="text" class="form-control" name="office_fax" value="{{homepageData.contactInfo.fax}}" id="office_fax" placeholder="Fax number">
                                 </div>
 
                                 <div class="row d-flex">
                                     <div class="form-group flex-fill">
                                         <label for="latitude">Latitude</label>
-                                        <input type="number" step="0.000001" class="form-control" name="latitude" id="latitude" placeholder="eg. 438.245245">
+                                        <input type="number" step="0.0000001" class="form-control" name="latitude" value="{{homepageData.location.latitude}}" id="latitude" placeholder="eg. 438.245245">
                                     </div>
                                     <div class="space" style="width: 24px;"></div>
                                     <div class="form-group flex-fill">
                                         <label for="longitude">Longitude</label>
-                                        <input type="number" step="0.000001" class="form-control" name="longitude" id="longitude" placeholder="eg. 27.43985425">
+                                        <input type="number" step="0.0000001" class="form-control" name="longitude" value="{{homepageData.location.longitude}}" id="longitude" placeholder="eg. 27.43985425">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="header_title">Google Map Embed(iframe snippet)</label>
-                                    <input type="text" class="form-control" name="header_title" id="header_title" placeholder="eg. <ifame>...</iframe>" REQUIRED>
+                                    <label for="office_embed_map_snippet">Google Map Embed(iframe snippet)</label>
+                                    <input type="text" class="form-control" name="office_embed_map_snippet" value="{{homepageData.location.iframe_snippet}}" id="office_embed_map_snippet" placeholder="eg. <ifame>...</iframe>" REQUIRED>
                                 </div>
                             </div>
                     </div>
@@ -156,6 +170,7 @@
             </div>
             <br>
             <br>
+            </form>
         </div>
         <!-- /.container-fluid -->
     </section>
@@ -169,6 +184,39 @@
 
 {% comment %} EXTRA SCRIPTS {% endcomment %}
 {% block scripts %}
+
+<script>
+    $(document).ready(function(){
+        {% if homepageData.promotedProject %}
+            $('#add_promoted_project_select2').val('{{homepageData.promotedProject.id}}');
+            $('#add_promoted_project_select2').trigger('change');
+        {% endif %}
+
+        {% if homepageData %}
+            var selectedValues = new Array();
+            {% for service in homepageData.services.all %}
+                {% if service %}
+                    selectedValues.push("{{ service.id }}")
+                {% endif %}
+            {% endfor %}
+            $('#add_services_select2').val(selectedValues);
+            $('#add_services_select2').trigger('change');
+        {% endif %}
+
+        {% if homepageData %}
+            var selectedValues = new Array();
+            {% for ongoingProject in homepageData.ongoingProjects.all %}
+                {% if ongoingProject %}
+                    selectedValues.push("{{ ongoingProject.id }}")
+                {% endif %}
+            {% endfor %}
+            $('#add_ongoing_project_select2').val(selectedValues);
+            $('#add_ongoing_project_select2').trigger('change');
+        {% endif %}
+        
+        
+    });
+</script>
 
 <script>
 

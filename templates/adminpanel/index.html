@@ -52,11 +52,7 @@
       $(function() {
           console.log(location.pathname.split('/')[1]);
         $('nav a').removeClass('active');
-<<<<<<< Updated upstream
-        $('nav a[href^="/' adminpanel+location.pathname.split('/')[1] + '"]').addClass('active');
-=======
-        // {% comment %} $('nav a[href^="/' adminpanel+location.pathname.split('/')[1] + '"]').addClass('active'); {% endcomment %}
->>>>>>> Stashed changes
+        {% comment %} $('nav a[href^="/' adminpanel+location.pathname.split('/')[1] + '"]').addClass('active'); {% endcomment %}
       });
   </script>
 </body>
