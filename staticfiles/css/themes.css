@@ -1,0 +1,84 @@
+:root {
+    --currentTheme: 'Pleasant';
+    --primaryColor: #fff;
+    --secondaryColor: #fff;
+    --backgroundColor: #F0E5D0;
+    --accentColor: #DE3E33;
+    --primaryButtonColor: #F0E5D0;
+    --accentButtonColor: #EC1C23;
+    --primaryTextColor: #0d0d0d;
+    --secondaryTextColor: #707070;
+    --cardBoxShadow: ;
+    --primaryCardColor: #2A333F;
+    --footerBackgroundColor: #2A333F; 
+    --accentCardColor: #BE3E35;
+    --footerCopyrightColor: #222933;
+    --cardBoxShadow: 0px 20px 99px rgb(190, 62, 53, 0.2);
+    --companiesBoxShadow: 0px 5px 20px rgb(190, 62, 53, 0.1);
+    --fadeColor: rgba(240, 229, 208, 0.5);
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+    margin: 0px 8px;
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 28px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #707070;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #DE3E33;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 28px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

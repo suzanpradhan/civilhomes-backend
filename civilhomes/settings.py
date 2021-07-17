@@ -26,7 +26,7 @@ SECRET_KEY = '9f6kg38mcwel7z!sr^h*m-9d1nxe+g41#wnu#%ogkpqhv6&z%k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,14 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 WSGI_APPLICATION = 'civilhomes.wsgi.application'
 
 
@@ -91,7 +101,7 @@ DATABASES = {
         # 'USER': 'getsmart_suzan',
         # 'PASSWORD': 'Sujan12345@',
         # 'HOST': 'localhost',
-        # 'PORT': '',
+        # 'PORT': '3306',
     }
 }
 
