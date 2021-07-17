@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from civilhomes.apps.homepage.models import Companies, ContactInfo, HomePageBasic, Service, VideoSection
 from civilhomes.apps.imagegallery.models import Image
 from civilhomes.apps.blogapp.models import Blog
 from civilhomes.apps.projects.models import *
-from django.http import request
+from django.http import JsonResponse, request
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from json import dumps
