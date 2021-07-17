@@ -5,6 +5,22 @@ from civilhomes.apps.imagegallery.models import Image
 from civilhomes.apps.blogapp.models import Blog
 from civilhomes.apps.projects.models import *
 from django.http import request
+<<<<<<< Updated upstream
+=======
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate, login, logout
+from json import dumps
+from django.contrib import messages
+from .serializers import ImageSerializer
+
+class AdminLogin(LoginRequiredMixin, TemplateView):
+    template_name = "adminpanel/auth/login.html"
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+>>>>>>> Stashed changes
 
 
 class Dashboard(TemplateView):
@@ -15,12 +31,24 @@ class Dashboard(TemplateView):
 
 class HomePageGeneralSettings(TemplateView):
     template_name = "adminpanel/homepage/general_settings.html"
+<<<<<<< Updated upstream
+=======
+    login_url = "admin-login"
+
+    redirect_field_name = "hollaback"
+>>>>>>> Stashed changes
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
 class AddUpdateComapany(TemplateView):
 
+<<<<<<< Updated upstream
+=======
+class AddUpdateCompany(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+
+>>>>>>> Stashed changes
     def post(self, request,id,*args, **kwargs):
         companyName = request.POST.get('companyName')
         companyLogo = request.FILES.get('image')
@@ -40,7 +68,10 @@ class AddUpdateComapany(TemplateView):
             company = Companies(name=companyName,companyLogo=companyLogo)
             company.save()
 
-class ListDeleteCompanies(TemplateView):
+class ListDeleteCompanies(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
     
     def post(self, request,id,*args,**kwargs):
         Companies.objects.filter(id=id).delete()
@@ -48,7 +79,10 @@ class ListDeleteCompanies(TemplateView):
     def get(self, request, *args, **kwargs):
         companiesAll = Companies.objects.all()
 
-class AddUpdateVideo(TemplateView):
+class AddUpdateVideo(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
 
     def post(self, request,id,*args,**kwargs):
         videoTitle = request.POST.get('videoTitle')
@@ -68,7 +102,10 @@ class AddUpdateVideo(TemplateView):
             vid = VideoSection(videoTitle=videoTitle,video=video,videoLink=videoURL)
             vid.save()
 
-class ListDeleteVideo(TemplateView):
+class ListDeleteVideo(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
     
     def post(self, request,id,*args,**kwargs):
         VideoSection.objects.filter(id=id).delete()
@@ -76,7 +113,14 @@ class ListDeleteVideo(TemplateView):
     def get(self, request, *args, **kwargs):
         VideosAll = VideoSection.objects.all()
 
+<<<<<<< Updated upstream
 class AddUpdateImages(TemplateView):
+=======
+class AddImage(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+>>>>>>> Stashed changes
 
     def post(self, request,id,*args,**kwargs):
         image_name=request.POST.get('imageName')
@@ -97,7 +141,10 @@ class AddUpdateImages(TemplateView):
             imageObj.save()
 
 
-class ListDeleteImage(TemplateView):
+class ListDeleteImage(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
     
     def post(self, request,id,*args,**kwargs):
         Image.objects.filter(id=id).delete()
@@ -105,7 +152,10 @@ class ListDeleteImage(TemplateView):
     def get(self, request, *args, **kwargs):
         ImagesAll = Image.objects.all()
 
-class ListDeleteBlog(TemplateView):
+class ListDeleteBlog(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
 
     def post(self, request,id,*args,**kwargs):
         Blog.objects.filter(id=id).delete()
@@ -113,7 +163,10 @@ class ListDeleteBlog(TemplateView):
     def get(self, request, *args, **kwargs):
         blogAll = Blog.objects.all()
 
-class AddUpdateBlog(TemplateView):
+class AddUpdateBlog(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
 
     def post(self, request,id,*args,**kwargs):
         title = request.POST.get('title')
@@ -138,7 +191,38 @@ class AddUpdateBlog(TemplateView):
             blog= Blog(title=title,content=content,cover_image=imageObj)
             blog.save()
 
+<<<<<<< Updated upstream
 class AddUpdateProject(TemplateView):
+=======
+class AddProject(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    template_name ="adminpanel/projects/add_new_projects.html"
+
+    def get(self, request,*args,**kwargs):
+        status = (
+            (1, "Not Started"),
+            (2, "Ongoing"),
+            (3, "Completed"),
+            (4, "On Hold")
+        )
+        dimension = (
+            (1, "2D"),
+            (2, "3D")
+        )
+        image_types = (
+            (1, "Ongoing"),
+            (2, "Completed")
+        )
+        context = {
+            "status": status,
+            "dimensions": dimension,
+            "image_types": image_types
+        }
+        
+        return render(request,self.template_name, context)
+>>>>>>> Stashed changes
 
     def post(self, request, id,*args,**kwargs):
         name = request.POST.get('name')
@@ -170,16 +254,152 @@ class AddUpdateProject(TemplateView):
                             project_plan = ProjectPlan.objects.get(id=project_plan),
                             location = Location.objects.get(id=location))
         project.save()
+<<<<<<< Updated upstream
 
 class ListDeleteProject(TemplateView):
     
     def post(self, request,id,*args,**kwargs):
         Project.objects.filter(id=id).delete()
+=======
+        if amenities and len(amenities) > 0:
+            for amenitie in amenities:
+                amenitieObject = Amenitie.objects.get(id=amenitie)
+                project.amenities.add(amenitieObject)
+        if project_images and len(project_images) > 0:
+            for image in project_images:
+                imageObject = Image.objects.get(id=image)
+                project.project_images.add(imageObject)
+        return redirect('admin-project-all')
+
+        # except :
+        #     project=Project(name = request.POST.get('name'),description = request.POST.get('description'),
+        #                     status = request.POST.get('status'),
+        #                     brochure_url =request.POST.get('brochure_url'),
+        #                     project_plan = ProjectPlan.objects.get(id=project_plan),
+        #                     location = Location.objects.get(id=location))
+        # project.save()
+
+class UpdateProject(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+
+    template_name ="adminpanel/projects/update_project.html"
+
+    def get(self, request,id,*args,**kwargs):
+        status = (
+            (1, "Not Started"),
+            (2, "Ongoing"),
+            (3, "Completed"),
+            (4, "On Hold")
+        )
+        dimension = (
+            (1, "2D"),
+            (2, "3D")
+        )
+        image_types = (
+            (1, "Ongoing"),
+            (2, "Completed")
+        )
+        project = Project.objects.get(id=id)
+        context = {
+            "status": status,
+            "project":project,
+            "dimensions": dimension,
+            "image_types": image_types
+        }
+        
+        return render(request,self.template_name, context)
+
+    def post(self, request,id, *args,**kwargs):
+        name = request.POST.get('project_name')
+        description = request.POST.get('project_description')
+        address = request.POST.get('project_location')
+        
+        project_status = request.POST.get('project_status')
+        project_plan_name = request.POST.get('project_plan_name')
+        
+
+        amenities = request.POST.getlist('amenities[]')
+
+        # project_video = request.FILES['project_video']
+        # project_video_youtube = request.POST.get('project_video_youtube')
+
+        longitude = request.POST.get('longitude')
+        latitude = request.POST.get('latitude')
+        embed_map_snippet = request.POST.get('embed_map_snippet')
+
+        project_images = request.POST.getlist('project_images[]')
+        # try:
+        project = Project.objects.get(id=id)
+        if name:
+            project.name=name
+        if description:
+            project.description=description
+        if project_status:
+            project.status=project_status
+        if 'project_brochure' in request.FILES:
+            project_brochure = request.FILES['project_brochure']
+            project.brochure_url=project_brochure
+        if 'project_plan_file' in request.FILES:
+            project_plan_file = request.FILES['project_plan_file']
+            projectPlan=ProjectPlan(name=project_plan_name, sheet_url=project_plan_file)
+            projectPlan.save()
+            project.project_plan = projectPlan
+        if address:
+            location=Location()
+            location.name = address
+            location.latitude = latitude
+            location.longitude = longitude
+            location.iframe_snippet = embed_map_snippet
+            location.save()
+            project.location = location
+        project.save()
+        if amenities and len(amenities) > 0:
+            for amenitie in amenities:
+                amenitieObject = Amenitie.objects.get(id=amenitie)
+                project.amenities.add(amenitieObject)
+        if project_images and len(project_images) > 0:
+            for image in project_images:
+                imageObject = Image.objects.get(id=image)
+                project.project_images.add(imageObject)
+        return redirect('admin-project-all')
+
+class ListProject(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    template_name ="adminpanel/projects/all_projects.html"
+>>>>>>> Stashed changes
 
     def get(self, request, *args, **kwargs):
         ProjectAll = Project.objects.all()
 
+<<<<<<< Updated upstream
 class ProjectInfo(TemplateView):
+=======
+        context = {
+            "projects": ProjectAll
+        }
+
+        return render(request, self.template_name, context)
+
+class DeleteProject(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    def get(self, request, id, *args, **kwargs):
+        project = Project.objects.get(id=id)
+        project.delete()
+        return redirect("admin-project-all")
+
+
+
+class ProjectInfo(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+>>>>>>> Stashed changes
 
     def post(self, request, id,*args,**kwargs):
         project= request.POST.get('project')
@@ -207,7 +427,10 @@ class ProjectInfo(TemplateView):
                                         value=request.POST.get('value'))
             projectInfo.save()
 
-class ListDeleteProjectInfo(TemplateView):
+class ListDeleteProjectInfo(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
     
     def post(self, request,id,*args,**kwargs):
         ProjectInfo.objects.filter(id=id).delete()
@@ -215,7 +438,35 @@ class ListDeleteProjectInfo(TemplateView):
     def get(self, request, *args, **kwargs):
         ProjectInfoAll = ProjectInfo.objects.all()
 
+<<<<<<< Updated upstream
 class AddUpdateAmenities(TemplateView):
+=======
+class AddAmenitie(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    def post(self, request,*args,**kwargs):
+        name = request.POST.get('amenitie_name')
+        description = request.POST.get('amenitie_description')
+        amenitie = Amenitie()
+        if name:
+            amenitie.name = name
+        if description:
+            amenitie.description=description
+        amenitie.save()
+        amenitieSaved = Amenitie.objects.get(id=amenitie.pk)
+        jsonResponseData = {
+            "amenitie_id": amenitie.pk,
+            "amenitie_name": amenitieSaved.name,
+            "amenitie_description": amenitieSaved.description
+        }
+        return JsonResponse(jsonResponseData)
+
+class AddUpdateAmenities(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+>>>>>>> Stashed changes
 
     def post(self, request, id,*args,**kwargs):
         name = request.POST.get('name')
@@ -237,7 +488,10 @@ class AddUpdateAmenities(TemplateView):
                                 description = request.POST.get('description'),
                                 project= Project.objects.get(project))
 
-class ListDeleteAmenities(TemplateView):
+class ListDeleteAmenities(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
     
     def post(self, request,id,*args,**kwargs):
         Amenitie.objects.filter(id=id).delete()
@@ -246,7 +500,10 @@ class ListDeleteAmenities(TemplateView):
         AmenitiesAll = Amenitie.objects.all()
 
 
-class HomepageEdit(TemplateView):
+class HomepageEdit(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
 
     def post(self, request, id,*args,**kwargs):
         headerTitle= request.POST.get('headerTitle')
@@ -281,3 +538,105 @@ class HomepageEdit(TemplateView):
         homepage.ongoingProject = ongoingProject
         homepage.companies = companies
         homepage.save()
+<<<<<<< Updated upstream
+=======
+
+class Services(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    template_name ="adminpanel/services/add_new_services.html"
+    def get(self, request,*args,**kwargs):
+        dimension=(
+            (1,"2D"),
+            (2,"3D")
+        )
+        status=(
+            (1,"Ongoing"),
+            (2,"Completed")
+        )
+        context = {
+            "status": status,
+            "dimensions": dimension,
+        }
+        
+        return render(request,self.template_name, context)
+    def post(self, request,*args,**kwargs):
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image=request.FILES.get('image')
+        image_name=request.POST.get('image_name')
+        
+        if request.POST.get('dimension'):
+            dimension=request.POST.get('dimension')
+        else:
+            dimension=None
+        if request.POST.get('image_type'):
+            image_type=request.POST.get('image_type')
+        else:
+            image_type=None
+
+        image_src=Image(image_name=image_name,image=image,image_type=image_type)
+        image_src.save()
+        service=Service(title=title,description=description,image=image_src)
+        service.save()
+        return redirect('admin-service-all')
+
+class ListServices(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    template_name ="adminpanel/services/all_services.html"
+
+    def get(self, request, *args, **kwargs):
+        ServicesAll = Service.objects.all()
+        context = {
+            "services": ServicesAll
+        }
+
+        return render(request, self.template_name, context)
+
+class UpdateServices(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    template_name='adminpanel/services/update_services.html'
+
+    def get(self, request,id,*args,**kwargs):
+        service = Service.objects.get(id=id)
+
+        context={
+            'service':service,
+        }
+        return render(request, self.template_name,context)
+    
+    def post(self, request,id,*args,**kwargs):
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image=request.FILES.get('image')
+        image_name=request.POST.get('image_name')
+        
+        if request.POST.get('dimension'):
+            dimension=request.POST.get('dimension')
+        else:
+            dimension=None
+        if request.POST.get('image_type'):
+            image_type=request.POST.get('image_type')
+        else:
+            image_type=None
+
+        image_src=Image(image_name=image_name,image=image,image_type=image_type)
+        image_src.save()
+        service=Service(title=title,description=description,image=image_src)
+        service.save()
+        return redirect('admin-service-all')
+
+class DeleteServices(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    def get(self, request, id, *args, **kwargs):
+        service = Service.objects.get(id=id)
+        service.delete()
+        return redirect("admin-service-all")
+>>>>>>> Stashed changes

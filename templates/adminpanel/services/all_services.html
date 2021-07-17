@@ -1,0 +1,86 @@
+{% extends 'adminpanel/index.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>All Project</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <a href="{% url 'admin-service-add' %}"><button type="button" class="btn btn-block btn-primary"><i class="fas fa-plus"></i>&nbspAdd New Project</button></a>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        {% comment %}
+                        <div class="card-header">
+                            <h3 class="card-title">All Items</h3>
+                        </div> {% endcomment %}
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">All Projects</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Name</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for service in services %}
+                                        <tr>
+                                            <td>{{ service.title }}</td>
+                                            <td>{{ service.description }}</td>
+                                            <td>
+                                                <a href="{% url 'admin-service-update' id=service.id %}"><button type="button" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i>&nbspEdit</button></a>
+                                                <a href="{% url 'admin-service-delete' id=service.id %}"><button type="button" class="btn btn-sm btn-danger"><i class="fas"></i>&nbspDelete</button></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+
+
+{% endblock content %}
+{% block scripts %}{% endblock scripts %}

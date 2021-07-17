@@ -1,0 +1,429 @@
+{% extends 'adminpanel/index.html' %} {% load static %} {% block content %}
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Add New Service</h1>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+    <form role="form" action="{% url 'admin-service-add' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Project Basic Details</h3>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+              <div class="form-group">
+                <label for="header_title">Service Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="title"
+                  id="title"
+                  placeholder="eg. Spicy Burger"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="summernote">Description</label>
+                <div class="card-body">
+                  <textarea name="description" id="summernote">
+                                            Place some text here.
+                                        </textarea
+                  >
+                </div>
+              </div>
+
+              </div>
+              <div class="form-group">
+                <label for="header_title">Image Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="image_name"
+                  id="image_name"
+                  placeholder="eg. Penthouse"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="header_title">Image Status</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="image_type"
+                  id="image_type"
+                  placeholder="eg. 1-Ongoing, 2-Completed"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Project Status</label>
+                <select
+                  class="form-control select2"
+                  id="add_project_status_select2"
+                  name="project_status"
+                  style="width: 100%"
+                >
+                  {% for statusIndexed in status %}
+                  <option value="{{ statusIndexed.0 }}">
+                    {{ statusIndexed.1 }}
+                  </option>
+                  {% endfor %}
+                </select>
+
+              <div class="form-group">
+                <label for="header_title">Image dimension</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="dimension"
+                  id="dimension"
+                  placeholder="eg. 1-2D,2-3D"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="project_brochure">Upload Image</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      name="project_brochure"
+                      id="project_brochure"
+                    />
+                    <label class="custom-file-label" for="project_brochure"
+                      >Choose file</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+              
+              
+
+             
+            </div>
+            <!-- /.card-body -->
+          </div>
+          
+        </div>
+
+        <!-- PROMOTIONAL VIDEOS -->
+       
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-12">
+          <input
+            type="submit"
+            value="Save Changes"
+            class="btn btn-success float-right"
+          />
+        </div>
+      </div>
+      <br />
+      <br />
+      </form>
+
+      <!-- AMENITIE MODEL -->
+      <div class="modal fade" id="modal-amenitie">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form id="add-amenitie-form" method="post">
+              <div class="modal-header">
+                <h4 class="modal-title">Add Amenitie</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="amenitie_name">Amenitie Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="amenitie_name"
+                    id="amenitie_name"
+                    placeholder="eg. 24 Hour Water Supply"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="amenitie_description_summernote"
+                    >Description</label
+                  >
+                  <div class="card-body">
+                    <textarea
+                      name="amenitie_description"
+                      id="amenitie_description_summernote"
+                    >
+                    </textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+      <!-- IMAGE PROJECT GALLERY UPLOAD MODAL -->
+      <div class="modal fade" id="modal-project-galley">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form>
+              <div class="modal-header">
+                <h4 class="modal-title">Add Image</h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="image_name">Image name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="image_name"
+                    id="image_name"
+                    placeholder="eg. Image Name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Image Dimension</label>
+                  <select
+                    class="form-control select2"
+                    id="add_dimension_select2"
+                    name="dimension"
+                    style="width: 100%"
+                  >
+                    {% for dimension in dimensions %}
+                    <option value="{{ dimension.0 }}">{{ dimension.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Image Type</label>
+                  <select
+                    class="form-control select2"
+                    id="add_image_type_select2"
+                    name="image_type"
+                    style="width: 100%"
+                  >
+                    {% for image_type in image_types %}
+                    <option value="{{ image_type.0 }}">{{ image_type.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="image">Upload Image</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        name="image"
+                        id="image"
+                        accept="image/x-png,image/gif,image/jpeg"
+                      />
+                      <label class="custom-file-label" id="file-input-label" for="image"
+                        >Choose file</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" id="image_form_submit" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+{% endblock content %} {% comment %} EXTRA SCRIPTS {% endcomment %} 
+{% block scripts %}
+
+<script>
+    $(document).on("click", "#image_form_submit", function (e) {
+    {% comment %} e.preventDefault(); {% endcomment %}
+    var url =  "{% url 'admin-image-add' %}";
+    var formData = new FormData();
+    formData.append('image_name', $('#image_name').val());
+    formData.append('dimension', $('#add_dimension_select2').val());
+    formData.append('image',  $('#file-input')[0].files[0]);
+    formData.append('action', 'admin-image-add');
+    formData.append("image_type", $("#add_image_type_select2").val());
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: formData,
+        enctype: 'multipart/form-data',
+        dataType: "json",
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+          new_project_image_item = '<div class="col-sm-3">'
+          + '<input type="text" name="project_images[]" id="projectImageData" value="' +
+          data.id +
+          '" style="display: none;">'
+          + '<a href="'+data.image_url+'" data-toggle="lightbox" data-title="sample 10 - white" data-gallery="gallery">'
+          + '<img src="'+data.image_url+'" class="img-fluid mb-3" style="border: 5px solid #fff; box-shadow: 1px 3px 8px #bfbfbf;" alt="white sample" />'
+          + '</a>'
+          + '</div>';
+          $("#project-gallery-items").append(new_project_image_item);
+          $('#image_name').val('');
+          $('#file-input').val(null);
+          $('#file-input-label').html('Choose file');
+          $("#modal-project-galley").modal("toggle");
+        },
+        error: function(xhr, errmsg, err) {
+                  console.log(xhr.status + ":" + xhr.responseText)
+              },
+
+        failure: function () {
+          alert("failed");
+        },
+      });
+  });
+</script>
+
+<script>
+  $("#add-amenitie-form").on("submit", function (e) {
+    e.preventDefault();
+    alert($("#amenitie_name").val());
+    $.ajax({
+      type: "POST",
+      url: "{% url 'admin-amenitie-add' %}",
+      data: {
+        amenitie_name: $("#amenitie_name").val(),
+        amenitie_description: $("#amenitie_description_summernote").val(),
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+        dataType: "json",
+      },
+      success: function (data){
+        console.log(data);
+        new_variation =
+          "<tr>" +
+          "<td>" +
+          '<input type="text" name="amenities[]" id="amenitieData" value="' +
+          data.amenitie_id +
+          '" style="display: none;">' +
+          data.amenitie_id +
+          "." +
+          "</td>" +
+          "<td>" +
+          data.amenitie_name +
+          "</td>" +
+          "<td>" +
+          data.amenitie_description +
+          "</td>" +
+          "<td>" +
+          "<button type='button' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i>&nbspEdit</button>" +
+          '<button type="button" class="btn btn-sm btn-danger">Delete</button>' +
+          "</td>" +
+          "</tr>";
+        $("#project_amenities>tbody").append(new_variation);
+        $('#amenitie_name').val('');
+        {% comment %} $('#amenitie_description_summernote').val('');
+        $('#amenitie_description_summernote').html(''); {% endcomment %}
+        $("#modal-amenitie").modal("toggle");
+      },
+
+      failure: function () {
+        alert("failed");
+      },
+    });
+  });
+</script>
+
+
+
+<script>
+  $(function () {
+    $(document).on("click", '[data-toggle="lightbox"]', function (event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true,
+      });
+    });
+    // Summernote
+    $("#summernote").summernote();
+
+    $("#amenitie_description_summernote").summernote();
+
+    // CodeMirror
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai",
+    });
+  });
+</script>
+
+{% endblock scripts %}
