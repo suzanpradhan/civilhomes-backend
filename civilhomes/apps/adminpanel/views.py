@@ -589,39 +589,3 @@ class ListServices(TemplateView):
         }
 
         return render(request, self.template_name, context)
-
-
-class Blog(TemplateView):
-    template_name ="adminpanel/blog/add_new_blog.html"
-    def post(self, request,*args,**kwargs):
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-        image=request.FILES.get('image')
-        image_name=request.POST.get('image_name')
-        
-        if request.POST.get('dimension'):
-            dimension=request.POST.get('dimension')
-        else:
-            dimension=None
-        if request.POST.get('image_type'):
-            image_type=request.POST.get('image_type')
-        else:
-            image_type=None
-
-        image_src=Image(image_name=image_name,image=image,image_type=image_type)
-        image_src.save()
-        service=Service(title=title,content=content,image=image_src)
-        service.save()
-        return redirect('admin-blogs-all')
-
-class ListBlog(TemplateView):
-    template_name ="adminpanel/blog/all_blogs.html"
-
-    def get(self, request, *args, **kwargs):
-        BlogAll = Blog.objects.all()
-
-        context = {
-            "blogs": BlogAll
-        }
-
-        return render(request, self.template_name, context)
