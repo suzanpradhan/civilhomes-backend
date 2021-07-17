@@ -5,6 +5,8 @@ from civilhomes.apps.imagegallery.models import Image
 from civilhomes.apps.blogapp.models import Blog
 from civilhomes.apps.projects.models import *
 from django.http import request
+<<<<<<< Updated upstream
+=======
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from json import dumps
@@ -18,6 +20,7 @@ class AdminLogin(LoginRequiredMixin, TemplateView):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+>>>>>>> Stashed changes
 
 
 class Dashboard(TemplateView):
@@ -28,18 +31,24 @@ class Dashboard(TemplateView):
 
 class HomePageGeneralSettings(TemplateView):
     template_name = "adminpanel/homepage/general_settings.html"
+<<<<<<< Updated upstream
+=======
     login_url = "admin-login"
 
     redirect_field_name = "hollaback"
+>>>>>>> Stashed changes
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
 class AddUpdateComapany(TemplateView):
 
+<<<<<<< Updated upstream
+=======
 class AddUpdateCompany(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
 
+>>>>>>> Stashed changes
     def post(self, request,id,*args, **kwargs):
         companyName = request.POST.get('companyName')
         companyLogo = request.FILES.get('image')
@@ -104,10 +113,14 @@ class ListDeleteVideo(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         VideosAll = VideoSection.objects.all()
 
+<<<<<<< Updated upstream
+class AddUpdateImages(TemplateView):
+=======
 class AddImage(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
     redirect_field_name = "hollaback"
 
+>>>>>>> Stashed changes
 
     def post(self, request,id,*args,**kwargs):
         image_name=request.POST.get('imageName')
@@ -178,6 +191,9 @@ class AddUpdateBlog(LoginRequiredMixin, TemplateView):
             blog= Blog(title=title,content=content,cover_image=imageObj)
             blog.save()
 
+<<<<<<< Updated upstream
+class AddUpdateProject(TemplateView):
+=======
 class AddProject(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
     redirect_field_name = "hollaback"
@@ -206,6 +222,7 @@ class AddProject(LoginRequiredMixin, TemplateView):
         }
         
         return render(request,self.template_name, context)
+>>>>>>> Stashed changes
 
     def post(self, request, id,*args,**kwargs):
         name = request.POST.get('name')
@@ -237,6 +254,13 @@ class AddProject(LoginRequiredMixin, TemplateView):
                             project_plan = ProjectPlan.objects.get(id=project_plan),
                             location = Location.objects.get(id=location))
         project.save()
+<<<<<<< Updated upstream
+
+class ListDeleteProject(TemplateView):
+    
+    def post(self, request,id,*args,**kwargs):
+        Project.objects.filter(id=id).delete()
+=======
         if amenities and len(amenities) > 0:
             for amenitie in amenities:
                 amenitieObject = Amenitie.objects.get(id=amenitie)
@@ -346,10 +370,14 @@ class ListProject(LoginRequiredMixin, TemplateView):
     redirect_field_name = "hollaback"
 
     template_name ="adminpanel/projects/all_projects.html"
+>>>>>>> Stashed changes
 
     def get(self, request, *args, **kwargs):
         ProjectAll = Project.objects.all()
 
+<<<<<<< Updated upstream
+class ProjectInfo(TemplateView):
+=======
         context = {
             "projects": ProjectAll
         }
@@ -371,6 +399,7 @@ class ProjectInfo(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
     redirect_field_name = "hollaback"
 
+>>>>>>> Stashed changes
 
     def post(self, request, id,*args,**kwargs):
         project= request.POST.get('project')
@@ -409,6 +438,9 @@ class ListDeleteProjectInfo(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         ProjectInfoAll = ProjectInfo.objects.all()
 
+<<<<<<< Updated upstream
+class AddUpdateAmenities(TemplateView):
+=======
 class AddAmenitie(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
     redirect_field_name = "hollaback"
@@ -434,6 +466,7 @@ class AddUpdateAmenities(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
     redirect_field_name = "hollaback"
 
+>>>>>>> Stashed changes
 
     def post(self, request, id,*args,**kwargs):
         name = request.POST.get('name')
@@ -505,6 +538,8 @@ class HomepageEdit(LoginRequiredMixin, TemplateView):
         homepage.ongoingProject = ongoingProject
         homepage.companies = companies
         homepage.save()
+<<<<<<< Updated upstream
+=======
 
 class Services(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
@@ -604,3 +639,4 @@ class DeleteServices(LoginRequiredMixin, TemplateView):
         service = Service.objects.get(id=id)
         service.delete()
         return redirect("admin-service-all")
+>>>>>>> Stashed changes
