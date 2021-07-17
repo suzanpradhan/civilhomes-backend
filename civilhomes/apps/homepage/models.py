@@ -10,11 +10,17 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+    
+
 
 class VideoSection(models.Model):
-    videoTitle = models.CharField(max_length=255, null=True, blank=True)
+    videoTitle = models.CharField(max_length=255)
     video = models.FileField(upload_to = 'videos/', null=True, blank=True)
     videoLink = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.videoTitle
+    
 
 
 class Companies(models.Model):

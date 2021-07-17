@@ -20,7 +20,7 @@ class LocationAdmin(admin.ModelAdmin):
 
 
 class AmenitieAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
+    list_display = ('name', 'description', 'project')
 
 
 admin.site.register(ProjectPlan)

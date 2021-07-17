@@ -4,7 +4,7 @@
 
 {% block content %}
         <div class="property-header-image">
-            <img src="{% static 'images/banner.jpg'%}" alt="">
+            <img src="{% static 'images/CLR-1.jpg'%}" alt="">
         </div>
          {% block navbar %}
 
@@ -43,7 +43,7 @@
 
             {% for project in projects %}
                 <div class="property_card">
-                    <img src="{{ project.project_images.all.0.image.url }}" alt="">
+                    <img src="{% static 'images/CLR-1.jpg'%}" alt="">
                     <div class="card-content">
                         <h1>{{ project.name }}</h1>
                         <p><i class="fa fa-map-marker" aria-hidden="true"></i>{{ project.address }}</p>

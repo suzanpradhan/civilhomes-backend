@@ -1,8 +1,8 @@
 from django.db import models
-from civilhomes.apps.imagegallery.models import Image
+
 
 class ProjectPlan(models.Model):
-    sheet_url = models.FileField(upload_to="project_sheet_files/")
+    sheet_url = models.URLField(max_length=200)
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -18,23 +18,6 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
-class Amenitie(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-class Info(models.Model):
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-
-class ProjectInfo(models.Model):
-    info = models.ForeignKey(Info, on_delete=models.CASCADE)
-    value = models.CharField(max_length=200)
 
 class Project(models.Model):
     status = (
@@ -47,17 +30,34 @@ class Project(models.Model):
     description = models.TextField()
     address = models.CharField(max_length=200)
     status = models.IntegerField(choices=status, default=1)
-    brochure_url = models.FileField(upload_to="brochures/")
+    brochure_url = models.URLField(max_length=200)
     project_plan = models.ForeignKey(ProjectPlan, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    amenities = models.ManyToManyField(Amenitie)
-    project_images = models.ManyToManyField(Image)
-    project_infos = models.ManyToManyField(ProjectInfo)
 
     def __str__(self):
         return self.name
 
 
+class Amenitie(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Info(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
+class ProjectInfo(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    info = models.ForeignKey(Info, on_delete=models.CASCADE)
+    value = models.CharField(max_length=200)
 
 
 class ProjectExtrasCard(models.Model):
