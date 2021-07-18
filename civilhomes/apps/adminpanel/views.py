@@ -658,10 +658,6 @@ class Services(TemplateView):
         service.save()
         return redirect('admin-service-all')
 
-class ListServices(LoginRequiredMixin, TemplateView):
-    login_url = "admin-login"
-    redirect_field_name = "hollaback"
-        return redirect('admin-services-all')
 
 class ListServices(TemplateView):
     template_name ="adminpanel/services/all_services.html"
@@ -717,4 +713,101 @@ class DeleteServices(LoginRequiredMixin, TemplateView):
         service = Service.objects.get(id=id)
         service.delete()
         return redirect("admin-service-all")
+
+
+class Blogs(TemplateView):
+    template_name ="adminpanel/blogs/add_new_blog.html"
+
+    def get(self, request,*args,**kwargs):
+        dimension=(
+            (1,"2D"),
+            (2,"3D")
+        )
+        status=(
+            (1,"Ongoing"),
+            (2,"Completed")
+        )
+        context = {
+            "status": status,
+            "dimensions": dimension,
+        }
+    
+        return render(request,self.template_name, context)
+
+    def post(self, request,*args,**kwargs):
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image=request.FILES.get('image')
+        image_name=request.POST.get('image_name')
         
+        if request.POST.get('dimension'):
+            dimension=request.POST.get('dimension')
+        else:
+            dimension=None
+        if request.POST.get('image_type'):
+            image_type=request.POST.get('image_type')
+        else:
+            image_type=None
+
+        image_src=Image(image_name=image_name,image=image,image_type=image_type)
+        image_src.save()
+        blog=Blog(title=title,content=description,image=image_src)
+        service.save()
+        return redirect('admin-blog-all')
+
+
+class ListBlogs(TemplateView):
+    template_name ="adminpanel/blogs/all_blogs.html"
+
+    def get(self, request, *args, **kwargs):
+        BlogsAll = Blog.objects.all()
+
+        context = {
+            "blogs": BlogsAll
+        }
+        return render(request, self.template_name, context)
+
+class UpdateBlog(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    template_name='adminpanel/services/update_blog.html'
+
+    def get(self, request,id,*args,**kwargs):
+        blog = Blog.objects.get(id=id)
+
+        context={
+            'blog':blog,
+        }
+        return render(request, self.template_name,context)
+    
+    def post(self, request,id,*args,**kwargs):
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        image=request.FILES.get('image')
+        image_name=request.POST.get('image_name')
+        
+        if request.POST.get('dimension'):
+            dimension=request.POST.get('dimension')
+        else:
+            dimension=None
+        if request.POST.get('image_type'):
+            image_type=request.POST.get('image_type')
+        else:
+            image_type=None
+
+        image_src=Image(image_name=image_name,image=image,image_type=image_type)
+        image_src.save()
+        blog=Blog(title=title,content=description,image=image_src)
+        blog.save()
+        return redirect('admin-blog-all')
+
+class DeleteBlogs(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    def get(self, request, id, *args, **kwargs):
+        blog = Blog.objects.get(id=id)
+        blog.delete()
+        return redirect("admin-blog-all")
+

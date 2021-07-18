@@ -26,4 +26,8 @@ urlpatterns += [
     path('service/all', views.ListServices.as_view(), name="admin-service-all"),
     path('service/<int:id>/update', views.UpdateServices.as_view(), name="admin-service-update"),
     path('service/<int:id>/delete', views.DeleteProject.as_view(), name="admin-service-delete"),
+    path('blog/add', views.Blogs.as_view(), name="admin-blog-add"),
+    path('blog/all', views.ListBlogs.as_view(), name="admin-blog-all"),
+    path('blog/<int:id>/update', views.UpdateBlog.as_view(), name="admin-blog-update"),
+    path('blog/<int:id>/delete', views.DeleteBlogs.as_view(), name="admin-blog-delete"),
 ]
