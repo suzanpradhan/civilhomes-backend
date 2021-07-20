@@ -30,4 +30,13 @@ urlpatterns += [
     path('blog/all', views.ListBlogs.as_view(), name="admin-blog-all"),
     path('blog/<int:id>/update', views.UpdateBlog.as_view(), name="admin-blog-update"),
     path('blog/<int:id>/delete', views.DeleteBlogs.as_view(), name="admin-blog-delete"),
+    path('banner/add', views.Banners.as_view(), name="admin-banner-add"),
+    path('banner/all', views.ListBanner.as_view(), name="admin-banner-all"),
+    path('banner/<int:id>/update', views.UpdateBanner.as_view(), name="admin-banner-update"),
+    path('banner/<int:id>/delete', views.DeleteBanner.as_view(), name="admin-banner-delete"),
+    path('link/add', views.Links.as_view(), name="admin-link-add"),
+    path('link/all', views.ListLink.as_view(), name="admin-link-all"),
+    path('link/<int:id>/update', views.UpdateLink.as_view(), name="admin-link-update"),
+    path('link/<int:id>/delete', views.DeleteLink.as_view(), name="admin-link-delete"),
+
 ]

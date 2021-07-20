@@ -115,7 +115,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-briefcase"></i>
               <p>
-                Services
+                Blogs
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -135,6 +135,52 @@
             </ul>
           </li>
 
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>
+                Banners
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'admin-banner-add' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New Banner</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'admin-banner-all' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Banners</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>
+                Links
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'admin-link-add' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New Link</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'admin-link-all' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Links</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           {% comment %} BLOG {% endcomment %}
           {% comment %} <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">

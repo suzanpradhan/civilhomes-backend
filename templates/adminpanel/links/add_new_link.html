@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Add New Blog</h1>
+          <h1>Add New Link</h1>
         </div>
       </div>
     </div>
@@ -16,111 +16,42 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-    <form role="form" action="{% url 'admin-blog-add' %}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{% url 'admin-link-add' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Blog Basic Details</h3>
+              <h3 class="card-title">Link Basic Details</h3>
             </div>
             <!-- /.card-header -->
 
             <div class="card-body">
               <div class="form-group">
-                <label for="header_title">Blog Name</label>
+                <label for="header_title">Link Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="title"
-                  id="title"
+                  name="name"
+                  id="name"
                   placeholder="eg. Spicy Burger"
                   required
                 />
               </div>
+            </div>
 
+            <div class="card-body">
               <div class="form-group">
-                <label for="summernote">Content</label>
-                <div class="card-body">
-                  <textarea name="description" id="summernote">
-                                            Place some text here.
-                                        </textarea
-                  >
-                </div>
-              </div>
-
-              </div>
-              <div class="form-group">
-                <label for="header_title">Image Name</label>
+                <label for="header_title">URL</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="image_name"
-                  id="image_name"
-                  placeholder="eg. Penthouse"
+                  name="url"
+                  id="url"
+                  placeholder="eg. google.com"
                   required
                 />
               </div>
-
-              <div class="form-group">
-                <label for="header_title">Image Status</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="image_type"
-                  id="image_type"
-                  placeholder="eg. 1-Ongoing, 2-Completed"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Project Status</label>
-                <select
-                  class="form-control select2"
-                  id="add_project_status_select2"
-                  name="project_status"
-                  style="width: 100%"
-                >
-                  {% for statusIndexed in status %}
-                  <option value="{{ statusIndexed.0 }}">
-                    {{ statusIndexed.1 }}
-                  </option>
-                  {% endfor %}
-                </select>
-
-              <div class="form-group">
-                <label for="header_title">Image dimension</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="dimension"
-                  id="dimension"
-                  placeholder="eg. 1-2D,2-3D"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="project_brochure">Upload Image</label>
-                <div class="input-group">
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      class="custom-file-input"
-                      name="project_brochure"
-                      id="image"
-                    />
-                    <label class="custom-file-label" for="project_brochure"
-                      >Choose file</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              
-              
-
-             
             </div>
             <!-- /.card-body -->
           </div>

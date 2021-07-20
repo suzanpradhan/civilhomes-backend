@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>All Blog</h1>
+                    <h1>All Banners</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <a href="{% url 'admin-blog-add' %}"><button type="button" class="btn btn-block btn-primary"><i class="fas fa-plus"></i>&nbspAdd New Project</button></a>
+                        <a href="{% url 'admin-banner-add' %}"><button type="button" class="btn btn-block btn-primary"><i class="fas fa-plus"></i>&nbspAdd New Project</button></a>
                     </ol>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         <!-- form start -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Blogs</h3>
+                                <h3 class="card-title">All Banners</h3>
 
                             </div>
                             <!-- /.card-header -->
@@ -44,20 +44,20 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Blog Name</th>
-                                            <th>Content</th>
+                                            <th>Banner Name</th>
+                                            <th>Image</th>
                                             <th>Actions</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for blog in blogs %}
+                                        {% for banner in banners %}
                                         <tr>
-                                            <td>{{ blog.title }}</td>
-                                            <td>{{ blog.content }}</td>
+                                            <td>{{ banner.name }}</td>
+                                            <td>{{ banner.image }}</td>
                                             <td>
-                                                <a href="{% url 'admin-blog-update' id=blog.id %}"><button type="button" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i>&nbspEdit</button></a>
-                                                <a href="{% url 'admin-blog-delete' id=blog.id %}"><button type="button" class="btn btn-sm btn-danger"><i class="fas"></i>&nbspDelete</button></a>
+                                                <a href="{% url 'admin-banner-update' id=banner.id %}"><button type="button" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i>&nbspEdit</button></a>
+                                                <a href="{% url 'admin-banner-delete' id=banner.id %}"><button type="button" class="btn btn-sm btn-danger"><i class="fas"></i>&nbspDelete</button></a>
                                             </td>
                                         </tr>
                                         {% endfor %}
