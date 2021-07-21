@@ -16,7 +16,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-    <form role="form" action="{% url 'admin-blog-add' %}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{% url 'admin-blog-update' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
@@ -58,7 +58,7 @@
                   class="form-control"
                   name="image_name"
                   id="image_name"
-                  value="{{blog.image.image_name}}"
+                  value="{{blog.cover_images.image_name}}"
                   placeholder="eg. Penthouse"
                   required
                 />
@@ -71,7 +71,7 @@
                   class="form-control"
                   name="image_type"
                   id="image_type"
-                  value="{{blog.image.image_type}}"
+                  value="{{blog.cover_images.image_type}}"
                   placeholder="eg. 1-Ongoing, 2-Completed"
                   required
                 />
@@ -85,7 +85,7 @@
                   name="dimension"
                   id="dimension"
                   placeholder="eg. 1-2D,2-3D"
-                  value="{{blog.image.dimension}}"
+                  value="{{blog.cover_images.dimension}}"
                   required
                 />
               </div>
@@ -97,10 +97,10 @@
                     <input
                       type="file"
                       class="custom-file-input"
-                      name="project_brochure"
-                      id="project_brochure"
+                      name="image"
+                      id="image"
                     />
-                    <label class="custom-file-label" for="project_brochure"
+                    <label class="custom-file-label" for="image"
                       >Choose file</label
                     >
                   </div>

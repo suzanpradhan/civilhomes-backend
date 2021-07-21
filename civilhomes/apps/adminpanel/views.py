@@ -116,36 +116,60 @@ class HomePageGeneralSettings(LoginRequiredMixin, TemplateView):
 
         
 
-class AddUpdateCompany(TemplateView):
-    def post(self, request,id,*args, **kwargs):
+class AddCompany(TemplateView):
+    template_name ="adminpanel/companies/add_new_company.html"
+    def post(self, request,*args, **kwargs):
         companyName = request.POST.get('companyName')
         companyLogo = request.FILES.get('image')
-        try:
-            company = Companies.objects.get(id=id)
-            if companyName:
-                company.name = companyName
-            if companyLogo:
-                imageObj = Image(image_name=request.POST.get('imageName'),image=companyLogo,image_type=request.POST.get('type'))
-                imageObj.save()
-                company.companyLogo = imageObj
-            company.save()
-        except:
+        imageObj = Image(image_name=request.POST.get('imageName'),image=companyLogo,image_type=request.POST.get('type'))
+        imageObj.save()
+        company = Companies(name=companyName,companyLogo=imageObj)
+        company.save()
+        return redirect('admin-company-all')
+
+class UpdateCompany(TemplateView):
+    template_name ="adminpanel/companies/update_company.html"
+    def get(self, request,id,*args,**kwargs):
+        company = Companies.objects.get(id=id)
+
+        context={
+            'company':company,
+        }
+        return render(request, self.template_name,context)
+
+    def post(self,request,id,*args, **kwargs):
+        company=Companies.objects.get(id=id)
+        companyName = request.POST.get('companyName')
+        companyLogo = request.FILES.get('image')
+        if companyName:
+            company.name = companyName
+        if companyLogo:
             imageObj = Image(image_name=request.POST.get('imageName'),image=companyLogo,image_type=request.POST.get('type'))
             imageObj.save()
             company.companyLogo = imageObj
-            company = Companies(name=companyName,companyLogo=companyLogo)
-            company.save()
+        company.save()
+        return redirect('admin-company-all')
 
-class ListDeleteCompanies(LoginRequiredMixin, TemplateView):
+class ListCompany(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
     redirect_field_name = "hollaback"
-
-    
-    def post(self, request,id,*args,**kwargs):
-        Companies.objects.filter(id=id).delete()
+    template_name ="adminpanel/companies/all_company.html"
 
     def get(self, request, *args, **kwargs):
         companiesAll = Companies.objects.all()
+
+        context = {
+            "companies": companiesAll
+        }
+        return render(request, self.template_name, context)
+
+class DeleteCompany(LoginRequiredMixin, TemplateView):
+    login_url = "admin-login"
+    redirect_field_name = "hollaback"
+
+    def post(self, request,id,*args,**kwargs):
+        Companies.objects.filter(id=id).delete()
+        return redirect('admin-company-all')
 
 class AddUpdateVideo(LoginRequiredMixin, TemplateView):
     login_url = "admin-login"
@@ -701,7 +725,10 @@ class UpdateServices(LoginRequiredMixin, TemplateView):
 
         image_src=Image(image_name=image_name,image=image,image_type=image_type)
         image_src.save()
-        service=Service(title=title,description=description,image=image_src)
+        service=Service.objects.get(id=id)
+        service.title=title
+        service.description=description
+        service.image=image_src
         service.save()
         return redirect('admin-service-all')
 
@@ -798,7 +825,10 @@ class UpdateBlog(LoginRequiredMixin, TemplateView):
 
         image_src=Image(image_name=image_name,image=image,image_type=image_type)
         image_src.save()
-        blog=Blog(title=title,content=description,cover_images=image_src)
+        blog=Blog.objects.get(id=id)
+        blog.title=title
+        blog.content=description
+        blog.cover_images=image_src
         blog.save()
         return redirect('admin-blog-all')
 
@@ -858,7 +888,10 @@ class UpdateBanner(LoginRequiredMixin, TemplateView):
         else:
             image=None
 
-        banner=Banner(name=name,image=image)
+        banner=Banner.objects.get(id=id)
+        banner.name=name
+        banner.image=image
+        
         banner.save()
         return redirect('admin-banner-all')
 
@@ -871,65 +904,6 @@ class DeleteBanner(LoginRequiredMixin, TemplateView):
         banner.delete()
         return redirect("admin-banner-all")
 
-class Banners(TemplateView):
-    template_name ="adminpanel/banners/add_new_banner.html"
-
-    def post(self, request,*args,**kwargs):
-        name = request.POST.get('name')
-        if request.FILES.get('image'):
-            image=request.FILES.get('image')
-        else:
-            image=None
-
-        banner=Banner(name=name,image=image)
-        banner.save()
-        return redirect('admin-banner-all')
-
-
-class ListBanner(TemplateView):
-    template_name ="adminpanel/banners/all_banner.html"
-
-    def get(self, request, *args, **kwargs):
-        BannerAll = Banner.objects.all()
-
-        context = {
-            "banners": BannerAll
-        }
-        return render(request, self.template_name, context)
-
-class UpdateBanner(LoginRequiredMixin, TemplateView):
-    login_url = "admin-login"
-    redirect_field_name = "hollaback"
-
-    template_name='adminpanel/banners/update_banner.html'
-
-    def get(self, request,id,*args,**kwargs):
-        banner = Banner.objects.get(id=id)
-
-        context={
-            'banner':banner,
-        }
-        return render(request, self.template_name,context)
-    
-    def post(self, request,*args,**kwargs):
-        name = request.POST.get('name')
-        if request.FILES.get('image'):
-            image=request.FILES.get('image')
-        else:
-            image=None
-
-        banner=Banner(name=name,image=image)
-        banner.save()
-        return redirect('admin-banner-all')
-
-class DeleteBanner(LoginRequiredMixin, TemplateView):
-    login_url = "admin-login"
-    redirect_field_name = "hollaback"
-
-    def get(self, request, id, *args, **kwargs):
-        banner = Banner.objects.get(id=id)
-        banner.delete()
-        return redirect("admin-banner-all")
 
 class Links(TemplateView):
     template_name ="adminpanel/links/add_new_link.html"
@@ -978,7 +952,9 @@ class UpdateLink(LoginRequiredMixin, TemplateView):
         else:
             url=None
 
-        link=Link(name=name,url=url)
+        link=Link.objects.get(id)
+        link.name=name
+        link.url=url
         link.save()
         return redirect('admin-link-all')
 

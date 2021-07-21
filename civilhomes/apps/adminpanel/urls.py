@@ -25,7 +25,7 @@ urlpatterns += [
     path('service/add', views.Services.as_view(), name="admin-service-add"),
     path('service/all', views.ListServices.as_view(), name="admin-service-all"),
     path('service/<int:id>/update', views.UpdateServices.as_view(), name="admin-service-update"),
-    path('service/<int:id>/delete', views.DeleteProject.as_view(), name="admin-service-delete"),
+    path('service/<int:id>/delete', views.DeleteServices.as_view(), name="admin-service-delete"),
     path('blog/add', views.Blogs.as_view(), name="admin-blog-add"),
     path('blog/all', views.ListBlogs.as_view(), name="admin-blog-all"),
     path('blog/<int:id>/update', views.UpdateBlog.as_view(), name="admin-blog-update"),
@@ -38,5 +38,9 @@ urlpatterns += [
     path('link/all', views.ListLink.as_view(), name="admin-link-all"),
     path('link/<int:id>/update', views.UpdateLink.as_view(), name="admin-link-update"),
     path('link/<int:id>/delete', views.DeleteLink.as_view(), name="admin-link-delete"),
+    path('company/add', views.AddCompany.as_view(), name="admin-company-add"),
+    path('company/all', views.ListCompany.as_view(), name="admin-company-all"),
+    path('company/<int:id>/update', views.UpdateCompany.as_view(), name="admin-company-update"),
+    path('company/<int:id>/delete', views.DeleteCompany.as_view(), name="admin-company-delete"),
 
 ]

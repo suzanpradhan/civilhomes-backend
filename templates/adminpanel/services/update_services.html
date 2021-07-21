@@ -16,7 +16,7 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-    <form role="form" action="{% url 'admin-service-add' %}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{% url 'admin-service-update' id=service.id %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="row">
         <div class="col-md-6">

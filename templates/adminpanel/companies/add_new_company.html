@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Update Banner</h1>
+          <h1>Add New Company</h1>
         </div>
       </div>
     </div>
@@ -16,30 +16,52 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-    <form role="form" action="{% url 'admin-banner-update' %}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{% url 'admin-company-add' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Banner Basic Details</h3>
+              <h3 class="card-title">Company Basic Details</h3>
             </div>
             <!-- /.card-header -->
 
             <div class="card-body">
               <div class="form-group">
-                <label for="header_title">Banner Name</label>
+                <label for="header_title">Company Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="name"
-                  id="name"
-                  value="{{banner.name}}"
+                  name="companyName"
+                  id="companyName"
                   placeholder="eg. Spicy Burger"
                   required
                 />
               </div>
 
+              <div class="form-group">
+                <label for="header_title">Image Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="imageName"
+                  id="imageName"
+                  placeholder="eg. Spicy Burger"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="header_title">Image Type</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="type"
+                  id="type"
+                  placeholder="eg. Spicy Burger"
+                  required
+                />
+              </div>
 
               <div class="form-group">
                 <label for="project_brochure">Upload Image</label>
@@ -50,7 +72,6 @@
                       class="custom-file-input"
                       name="image"
                       id="image"
-                      value="{{banner.image}}"
                     />
                     <label class="custom-file-label" for="project_brochure"
                       >Choose file</label

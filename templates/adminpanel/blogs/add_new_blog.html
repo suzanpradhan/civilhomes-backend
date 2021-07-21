@@ -73,20 +73,7 @@
                   required
                 />
               </div>
-              <div class="form-group">
-                <label>Project Status</label>
-                <select
-                  class="form-control select2"
-                  id="add_project_status_select2"
-                  name="project_status"
-                  style="width: 100%"
-                >
-                  {% for statusIndexed in status %}
-                  <option value="{{ statusIndexed.0 }}">
-                    {{ statusIndexed.1 }}
-                  </option>
-                  {% endfor %}
-                </select>
+             
 
               <div class="form-group">
                 <label for="header_title">Image dimension</label>
@@ -107,10 +94,10 @@
                     <input
                       type="file"
                       class="custom-file-input"
-                      name="project_brochure"
+                      name="image"
                       id="image"
                     />
-                    <label class="custom-file-label" for="project_brochure"
+                    <label class="custom-file-label" for="image"
                       >Choose file</label
                     >
                   </div>
