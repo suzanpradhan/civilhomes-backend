@@ -658,10 +658,10 @@ class Services(TemplateView):
         service.save()
         return redirect('admin-service-all')
 
-class ListServices(LoginRequiredMixin, TemplateView):
-    login_url = "admin-login"
-    redirect_field_name = "hollaback"
-        return redirect('admin-services-all')
+# class ListServices(LoginRequiredMixin, TemplateView):
+#     login_url = "admin-login"
+#     redirect_field_name = "hollaback"
+#         return redirect('admin-services-all')
 
 class ListServices(TemplateView):
     template_name ="adminpanel/services/all_services.html"
