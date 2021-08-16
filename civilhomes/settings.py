@@ -74,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'civilhomes.apps.homepage.context_processor.get_contact_details'
             ],
         },
     },
@@ -95,13 +96,13 @@ WSGI_APPLICATION = 'civilhomes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': 'getsmart_testdb',
-        'USER': 'getsmart_suzan',
-        'PASSWORD': 'Sujan12345@',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': 'getsmart_testdb',
+        # 'USER': 'getsmart_suzan',
+        # 'PASSWORD': 'Sujan12345@',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
     }
 }
 
