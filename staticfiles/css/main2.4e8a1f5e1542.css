@@ -4,42 +4,42 @@
 
 @font-face {
   font-family: Gliroy-bold;
-  src: url(../fonts/GILROY-EXTRABOLD.OTF);
+  src: url("../fonts/GILROY-EXTRABOLD.0f6e082f42f5.OTF");
 }
 
 @font-face {
   font-family: Gliroy;
-  src: url(../fonts/GILROY-LIGHT.OTF);
+  src: url("../fonts/GILROY-LIGHT.c62aded729bf.OTF");
 }
 
 @font-face {
   font-family: Calibri-bold;
-  src: url(../fonts/CALIBRIB.TTF);
+  src: url("../fonts/CALIBRIB.42a59a6bffb6.TTF");
 }
 
 @font-face {
   font-family: Calibri;
-  src: url(../fonts/CALIBRI.TTF);
+  src: url("../fonts/CALIBRI.3dea6da51309.TTF");
 }
 
 @font-face {
   font-family: Felix;
-  src: url(../fonts/FELIXTI.TTF);
+  src: url("../fonts/FELIXTI.0016f77f50d6.TTF");
 }
 
 @font-face {
   font-family: Quicksand-light;
-  src: url(../fonts/QUICKSAND-LIGHT.TTF);
+  src: url("../fonts/QUICKSAND-LIGHT.c5f954788f34.TTF");
 }
 
 @font-face {
   font-family: Quicksand-medium;
-  src: url(../fonts/QUICKSAND-MEDIUM.TTF);
+  src: url("../fonts/QUICKSAND-MEDIUM.0c64233241ea.TTF");
 }
 
 @font-face {
   font-family: Quicksand;
-  src: url(../fonts/QUICKSAND-REGULAR.TTF);
+  src: url("../fonts/QUICKSAND-REGULAR.f87b9b4f34bd.TTF");
 }
 
 /* WINDOW  */
@@ -107,7 +107,7 @@ body {
 
 .firstSection {
   background-image: -o-linear-gradient(var(--fadeHeader), var(--fadeHeader)),
-    url(../images/banner.jpg);
+    url("../images/banner.5b13a3a03245.jpg");
   background-image: -webkit-gradient(
       linear,
       left top,
@@ -115,9 +115,9 @@ body {
       from(var(--fadeHeader)),
       to(var(--fadeHeader))
     ),
-    url(../images/banner.jpg);
+    url("../images/banner.5b13a3a03245.jpg");
   background-image: linear-gradient(var(--fadeHeader), var(--fadeHeader)),
-    url(../images/banner.jpg);
+    url("../images/banner.5b13a3a03245.jpg");
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -1137,7 +1137,7 @@ h3 {
       var(--fadeColor),
       var(--fadeColor)
     ),
-    url(../images/findhome_back.png);
+    url("../images/findhome_back.25c3cb36fec1.png");
   background-image: -webkit-gradient(
       linear,
       left top,
@@ -1145,12 +1145,12 @@ h3 {
       from(var(--fadeColor)),
       to(var(--fadeColor))
     ),
-    url(../images/findhome_back.png);
+    url("../images/findhome_back.25c3cb36fec1.png");
   background-image: linear-gradient(
       var(--fadeColor),
       var(--fadeColor)
     ),
-    url(../images/findhome_back.png);
+    url("../images/findhome_back.25c3cb36fec1.png");
 }
 
 .findHomeSection .findHomeContent h3 {
